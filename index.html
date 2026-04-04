@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Silica | Total Supply Chain Resilience for Python</title>
+    <meta name="description" content="Neutralize Python dependency risks with Silica. Deep mapping, structural integrity analysis, and actionable security insights for engineering teams.">
+    <meta name="keywords" content="Python Security, Supply Chain Resilience, Dependency Mapping, Software Composition Analysis, SCA, Silica Security">
+    <meta name="author" content="Silica Systems">
+    <link rel="canonical" href="https://www.silicasecurity.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.silicasecurity.com/">
+    <meta property="og:title" content="Silica | Total Supply Chain Resilience">
+    <meta property="og:description" content="The only platform delivering full dependency mapping and actionable insights for Python ecosystems.">
+    <meta property="og:image" content="https://www.silicasecurity.com/og-image.png"> <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.silicasecurity.com/">
+    <meta property="twitter:title" content="Silica | Total Supply Chain Resilience">
+    <meta property="twitter:description" content="Neutralize Python dependency risks before deployment.">
+    <meta property="twitter:image" content="https://www.silicasecurity.com/og-image.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5L15 25v35c0 20 35 35 35 35s35-15 35-35V25L50 5z' fill='none' stroke='orange' stroke-width='8'/%3E%3Ccircle cx='50' cy='50' r='12' fill='orange'/%3E%3C/svg%3E">
+    <title>Silica | Supply Chain Resilience</title>
+    <style>
+        :root {
+            --nav-bg: rgba(0, 0, 0, 0.75);
+            --bg: #111;
+            --accent: #0071e3; /* Apple Blue */
+            --accent-hover: #0077ed;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --border: rgba(255, 255, 255, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: "SF Pro Display", -apple-system, system-ui, sans-serif;
+            line-height: 1.47;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- NAVBAR FIXE --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: var(--nav-bg);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-contact input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid transparent;
+            border-radius: 6px;
+            color: white;
+            padding: 6px 14px;
+            font-size: 13px;
+            width: 220px;
+            outline: none;
+        }
+
+        .nav-contact button {
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION (Contenant le divider) --- */
+        .hero-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pousse le divider en bas */
+            align-items: center;
+            padding-top: 200px; /* Espace pour le titre */
+            text-align: center;
+            background: radial-gradient(circle at center, #0000 0%, #121212 100%);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(40px, 8vw, 90px);
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            background: linear-gradient(180deg, #fff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- DIVIDER (Visible dans le 1er bloc) --- */
+        .divider {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .line {
+            width: 1px;
+            height: 80px; /* Taille ajustée pour tenir dans le viewport */
+            background: linear-gradient(180deg, orange, var(--border), transparent);
+        }
+
+
+        .arch-title {
+            font-size: 12px;
+            letter-spacing: 12px;
+            color: #555;
+            text-transform: uppercase;
+            margin: 20px 0;
+            font-weight: 400;
+        }
+
+        /* --- FEATURES SECTION (Après le scroll) --- */
+        .features-section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-header h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+/* Conteneur de la grille pour la perspective */
+.grid {
+    display: grid;
+    /* Force 3 colonnes sur PC, s'adapte sur tablette/mobile */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    perspective: 2000px; /* Augmenté pour un effet 3D plus profond */
+    padding: 20px;
+}
+
+.card {
+    background: #161617;
+    border-radius: 22px;
+    padding: 40px;
+    border: 1px solid var(--border);
+    min-height: 350px; /* Assure que toutes les cartes ont la même taille */
+    display: flex;
+    flex-direction: column;
+    
+    /* Animation de Flip au chargement */
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg) rotateY(90deg); /* Flip latéral + inclinaison */
+    opacity: 0;
+}
+
+/* État final quand la carte devient visible via JS */
+.card.visible {
+    transform: rotateX(0deg) rotateY(0deg);
+    opacity: 1;
+}
+
+/* Responsive : 2 colonnes sur tablette, 1 sur mobile */
+@media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+}
+
+        .card-icon { color: orange; font-size: 24px; margin-bottom: 20px; display: block; }
+        .card h3 { font-size: 22px; margin-bottom: 12px; }
+        .card p { color: var(--text-secondary); font-size: 16px; line-height: 1.5; }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: #424245;
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .nav-contact input { display: none; }
+            .hero-container { height: auto; padding-bottom: 50px; }
+        }
+
+        .stats-section {
+    padding: 100px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.stat-item {
+    text-align: left;
+}
+
+.stat-number {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(180deg, #fff 0%, #555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: orange;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.stat-desc {
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.comparison-box {
+    margin-top: 80px;
+    background: #161617;
+    border-radius: 28px;
+    padding: 40px;
+    border: 1px solid var(--border);
+}
+
+.comparison-box h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff3b30; /* Apple Red pour l'alerte */
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">Silica Security</a>
+        <form class="nav-contact" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="Professional email" required style="font-size:medium">
+            <button type="submit" style="color:black"><b style="font-size:medium">Contact us</b></button>
+        </form>
+    </nav>
+
+    <main>
+        <section class="hero-container">
+<div class="hero-content">
+
+            <h1>Total Resilience.</h1>
+
+            <p style="max-width: 900px; margin: 0 auto; line-height: 1.5; font-size: clamp(19px, 2.5vw, 26px); color: var(--text-secondary); font-weight: 500;">
+                The only <span style="color: var(--text-primary);">Supply Chain Security</span> platform that delivers 
+                a <span style="color: var(--text-primary);">full dependency mapping</span> and <span style="color: var(--text-primary);">immediately actionable insights</span>. 
+                Built specifically to neutralize risks across your entire <strong style="color: orange; font-weight: 600;">Python</strong> ecosystem.
+            </p>
+
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px 0; max-width: 1200px; margin: 0 auto; padding-top: 12%; font-family: sans-serif; color: #ffffff;">
+    
+    <div style="flex: 2; min-width: 350px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid orange;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: orange; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; margin-right: 12px; flex-shrink: 0;">1</div>
+            <h4 style="color: #ffffff; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Generation</h4>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.5; text-align: justify; text-justify: inter-word; margin: 0;">
+            Deconstruct your software supply chain into <span style="color: white; font-weight: 600;">atomic primitives</span>. We map raw source logic before the build pipeline begins.
+        </p>
+    </div>
+
+    <div style="flex: 2; min-width: 350px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid orange;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: orange; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; margin-right: 12px; flex-shrink: 0;">2</div>
+            <h4 style="color: #ffffff; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Processing</h4>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.5; text-align: justify; text-justify: inter-word; margin: 0;">
+            Analyze <span style="color: white; font-weight: 600;">structural integrity</span>. Map blast radiuses in real-time to isolate risks and filter 95% of security noise.
+        </p>
+    </div>
+
+    <div style="flex: 2; min-width: 350px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column;">
+        <div style="display: flex; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid orange;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: orange; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; margin-right: 12px; flex-shrink: 0;">3</div>
+            <h4 style="color: #ffffff; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Guidance</h4>
+        </div>
+        <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.5; text-align: justify; text-justify: inter-word; margin: 0;">
+            Execute <span style="color: white; font-weight: 600;">engineering-first remediation</span>. Receive a precise roadmap to prune or isolate components to be secure by design.
+        </p>
+    </div>
+
+</div>
+            <p style="margin-top: 25px; font-size: 20px; color: var(--text-secondary); opacity: 0.8;">
+                <i>"Stop the noise. Start acting with real-time mapping and automated cluster immunity."</i>
+            </p>
+        </div>
+
+        </section>
+
+         <section class="stats-section">
+            <div class="features-header" style="text-align: left;">
+                <h2 style="color: var(--text-secondary); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">Market Insights</h2>
+                <h2 style="font-size: 48px; max-width: 800px;">Static scanners are failing Python developers.</h2>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">Unreachable Noise</div>
+                    <div class="stat-number">90%+</div>
+                    <p class="stat-desc">Of vulnerabilities reported by legacy static tools are never actually loaded into memory or executed in Python runtimes.</p>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">PyPI Attacks</div>
+                    <div class="stat-number">480%</div>
+                    <p class="stat-desc">Spike in malicious package injections targeting Python ecosystems, moving beyond simple vulnerabilities to active malware.</p>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">Time Wasted</div>
+                    <div class="stat-number">15h+</div>
+                    <p class="stat-desc">Spent weekly by security teams triaging phantom alerts that have absolutely no execution path in your environment.</p>
+                </div>
+            </div>
+
+            <div class="comparison-box">
+                <h4>The Legacy Problem</h4>
+                <p style="font-size: 20px; line-height: 1.4; color: var(--text-primary);">
+                    Traditional dependency scanners treat Python like static manifests.</br></br> They ignore dynamic imports and flood your backlog with thousands of 
+                    <span style="color: #ff3b30;">unreachable vulnerabilities</span>, forcing your team to rebuild containers 
+                    for patches that don't even reduce your actual blast radius.
+                </p>
+            </div>
+
+
+        </section>
+<div style="height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); margin: 40px 0;"></div>
+
+        <section class="features-section">
+            <div class="features-header">
+                <h2 style="font-size: 40px;">Your Next-Gen Security Tool</h2>
+            </div>
+            
+            <div class="grid">
+<article class="card">
+    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">⬡</span>
+    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Blast Radius Detection</h3>
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
+        Analyze your <span style="color: var(--text-primary); font-weight: 500;">pre-deployment architecture</span> to map exactly how a vulnerability could spread. We reduce your attack surface by optimizing dependencies specifically for your Python application's needs before a single line of code reaches production.
+    </p>
+</article>
+
+<article class="card">
+    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">✕</span>
+    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Instant Break Simulation</h3>
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
+        Test the resilience of your ecosystem by <span style="color: var(--text-primary); font-weight: 500;">simulating dependency failures</span> in real-time. Evaluate the impact of a package breach or removal instantly, <span style="color: orange; font-weight: 500;">without the need to rebuild</span> or redeploy your application.
+    </p>
+</article>
+
+<article class="card">
+    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">▣--▣--▣</span>
+    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Source of Truth</h3>
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
+        Maintain an <span style="color: var(--text-primary); font-weight: 500;">immutable ledger</span> of every Python package. Ensure that your deployment strictly follows your security policy with a complete, actionable map of your entire dependency tree.
+    </p>
+</article>
+
+<article class="card">
+    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">✂</span>
+    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Optimizer</h3>
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
+        Most security tools react to vulnerabilities. Silica allows you to <span style="color: var(--text-primary); font-weight: 500;">proactively shape</span> your application's architecture. By mapping and optimizing your Python dependencies, we reduce your <span style="color: var(--text-primary); font-weight: 500;">potential attack surface</span> to its absolute minimum—aligning your production environment with the highest <span style="color: orange; font-weight: 500;">Threat Modeling</span> standards.
+    </p>
+</article>
+
+<article class="card">
+    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">⟳</span>
+    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Real-Time Audit</h3>
+    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
+        Continuous visibility across your ecosystem. Our platform performs <span style="color: var(--text-primary); font-weight: 500;">live inventory checks</span> and dependency mapping in real-time, instantly identifying any drift from your defined security baseline or newly introduced risks.
+    </p>
+</article>
+
+<article class="card">
+    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block;text-align: center;">☉</span>
+<h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em; color: var(--text-primary); text-align: center;">
+    Contextual Acceleration
+</h3>
+<p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
+    Stop wasting weeks on generic alerts. We deliver <span style="color: var(--text-primary); font-weight: 500;">immediately actionable insights</span> tailored to your specific application context, allowing your engineering teams to remediate verified risks faster and focus on shipping code.
+</p>
+</article>
+
+
+            </div>
+
+        </section>
+
+        <section class="cta-section" style="padding: 120px 40px; text-align: center; border-top: 1px solid var(--border); background: radial-gradient(circle at center, #121212 0%, var(--bg) 100%);">
+            <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 15px;">Ready to secure your Python ecosystem?</h2>
+            <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 40px;">Get full dependency mapping and immediately actionable insights today.</p>
+            
+
+            <p style="display: flex; align-items: center; justify-content: center; gap: 12px; margin: 60px 0; font-family: sans-serif;">
+    <span style="color: orange; font-size: 24px; line-height: 1;">✉</span> 
+    
+    <a href="mailto:contact@lianax.io" 
+       style="color: #ffffff; font-size: 20px; font-weight: 600; text-decoration: none; letter-spacing: 0.02em; transition: all 0.3s ease; border-bottom: 2px solid rgba(255, 165, 0, 0.2);" 
+       onmouseover="this.style.borderColor='orange'; this.style.color='orange';" 
+       onmouseout="this.style.borderColor='rgba(255, 165, 0, 0.2)'; this.style.color='#ffffff';">
+        contact@silicasecurity.com
+    </a>
+</p>
+<script>
+    const observerOptions = {
+        threshold: 0.2 // Déclenche quand 20% de la carte est visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Ajoute un délai progressif (cascade)
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 150); 
+                
+                // Optionnel : arrête d'observer une fois l'animation jouée
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // On cible toutes les cartes
+    document.querySelectorAll('.card').forEach(card => {
+        observer.observe(card);
+    });
+</script>
+        </section>
+
+    </main>
+
+    <footer>
+        © 2026 Silica Security. All rights reserved.
+    </footer>
+
+</body>
+</html>
