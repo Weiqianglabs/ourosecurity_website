@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Lien vers ton sitemap
-Sitemap: https://www.weiqianglabs.github.io/sitemap.xml
+Sitemap: https://www.weiqianglabs.github.io/ourostack/sitemap.xml
