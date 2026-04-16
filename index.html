@@ -121,11 +121,14 @@
 
   /* HERO */
   .hero {
-    min-height: 100vh;
     justify-content: flex-end;
     padding-bottom: 8vh;
     overflow: hidden;
-  }
+padding-top: 40px; /* Réduisez cette valeur (ex: de 100px à 40px) */
+  min-height: 100vh;  /* Si vous avez un min-height, réduisez-le aussi */ 
+display: flex;
+  padding-bottom: 25vh;        /* Pour garder un petit espace de respiration */
+}
 
   .hero-bg {
     position: absolute;
@@ -146,12 +149,13 @@
     -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 80%);
   }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 1000px;
-  }
+.hero-content {
+  margin-top: -50px; /* Plus la valeur est élevée, plus le bloc monte */
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1000px;
+}
 
   .hero-eyebrow {
     font-family: var(--font-body);
@@ -165,18 +169,46 @@
     animation: fadeUp 0.8s 0.2s forwards;
   }
 
-  .hero-title {
-    font-family: var(--font-head);
-    font-weight: 200;
-    font-size: clamp(3.5rem, 9vw, 8.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    color: var(--text-main);
-    opacity: 0;
-    animation: fadeUp 0.9s 0.4s forwards;
+  /* Style pour Supply Chain */
+.hero-title .title-mid {
+  font-style: normal;
+  font-weight: 200;
+  display: block;
+  color: var(--text-light);
+  font-size: 0.8em; /* Un peu plus petit que le reste */
+}
+
+/* Style pour Vulnerability Governance */
+.hero-title .title-bottom {
+  font-weight: 700;
+  display: block;
+  color: var(--text-main);
+  font-size: 0.7em; /* Ajusté pour que la ligne longue tienne sur l'écran */
+  white-space: nowrap; /* Évite le retour à la ligne sur les mots clés */
+}
+
+/* Correction pour mobile */
+@media (max-width: 768px) {
+  .hero-title .title-bottom {
+    white-space: normal;
+    font-size: 0.6em;
   }
+}
+
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(3.5rem, 9vw, 8.5rem);
+  line-height: 1.1; /* Augmenté légèrement pour l'empilement */
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  color: var(--text-main);
+  opacity: 0;
+  animation: fadeUp 0.9s 0.4s forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
   .hero-title strong {
     font-weight: 700;
@@ -778,11 +810,13 @@
   <div class="grid-overlay"></div>
   <div class="hero-content">
 <!--    <p class="hero-eyebrow">Supply Chain Security Platform</p>-->
-    <h1 class="hero-title">
-      <em>Supply Chain</em>
-      <strong>Vulnerability</strong>
-      <strong>Governance</strong>
-    </h1>
+<h1 class="hero-title">
+  <em class="title-top" style="font-style: normal; font-weight: bold; background: linear-gradient(90deg, #3776ab 50%, var(--accent) 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; font-size: 0.5em; letter-spacing: 0.1em;">Python</em>
+  
+  <em class="title-mid">Supply Chain</em>
+  
+  <strong class="title-bottom">Vulnerability Governance</strong>
+</h1>
     <p class="hero-sub">
       One agent. One SBOM. An intelligence that sorts, enriches, and prioritizes.
       Only the vulnerabilities that truly threaten your application are reported.
