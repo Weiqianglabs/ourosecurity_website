@@ -159,7 +159,7 @@ display: flex;
 
   .hero-eyebrow {
     font-family: var(--font-body);
-    font-size: 0.72rem;
+    font-size: 2.5rem;
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -808,30 +808,37 @@ display: flex;
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="grid-overlay"></div>
+  
   <div class="hero-content">
-<!--    <p class="hero-eyebrow">Supply Chain Security Platform</p>-->
-<h1 class="hero-title">
-  <em class="title-top" style="font-style: normal; font-weight: bold; background: linear-gradient(90deg, #3776ab 50%, var(--accent) 50%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; font-size: 0.5em; letter-spacing: 0.1em;">Python</em>
-  
-  <em class="title-mid">Supply Chain</em>
-  
-  <strong class="title-bottom">Vulnerability Governance</strong>
-</h1>
+    <h1 class="hero-title">
+<span class="hero-eyebrow" style="
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-weight: 800;
+    background: linear-gradient(90deg, #3776AB 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 1rem;
+">
+    Python
+</span>      
+      <span class="title-mid">Supply Chain</span>
+      <strong class="title-bottom">Governance.</strong>
+    </h1>
+
     <p class="hero-sub">
-      One agent. One SBOM. An intelligence that sorts, enriches, and prioritizes.
-      Only the vulnerabilities that truly threaten your application are reported.
+      Ouro transforms the chaos of a thousand vulnerabilities into a <b>single strategic path</b>. 
+      By <span class="accent-word">mapping your application’s DNA</span>against global threat intelligence, we eliminate 80% of the noise. 
+      No more endless CVE lists.
+.
     </p>
+
     <div class="hero-actions">
-      <a href="#agent" class="btn-primary">Discover our approach</a>
-      <a href="#contact" class="btn-secondary">Request a demo</a>
+      <a href="#agent" class="btn-primary">Explore the Ghost Agent</a>
+      <a href="#contact" class="btn-secondary">Request a Demo</a>
     </div>
   </div>
-<!--
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-arrow"></div>
-  </div>
--->
 </section>
 
 <section id="agent">
