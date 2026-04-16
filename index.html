@@ -2,502 +2,1071 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ouro Security — Supply Chain Vulnerability Governance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,200;0,300;0,400;0,600;1,200&family=Barlow+Condensed:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    /* Light Theme Variables */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f4f2;
+    --bg-tertiary: #ebebeb;
+    --text-main: #0a0a0a;
+    --text-muted: rgba(10, 10, 10, 0.6);
+    --text-light: rgba(10, 10, 10, 0.4);
     
-    <title>Ouro Security | Total Supply Chain Resilience for Python</title>
-    <meta name="description" content="Neutralize Python dependency risks with OuroStack. Deep mapping, structural integrity analysis, and actionable security insights for engineering teams.">
-    <meta name="keywords" content="Python Security, Supply Chain Resilience, Dependency Mapping, Software Composition Analysis, SCA, OuroStack Security">
-    <meta name="author" content="OuroStack">
-    <link rel="canonical" href="https://weiqianglabs.github.io/ourostack/">
+    --accent: #ec8a0a;
+    --accent-glow: rgba(236, 138, 10, 0.15);
+    /* Darkened accent2 for better contrast on light background */
+    --accent2: #0077b6; 
+    
+    --border-color: rgba(0, 0, 0, 0.08);
 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://weiqianglabs.github.io/ourostack/">
-    <meta property="og:title" content="OuroStack | Total Supply Chain Resilience">
-    <meta property="og:description" content="The only platform delivering full dependency mapping and actionable insights for Python ecosystems.">
-<meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&h=630&q=80">
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&h=630&q=80">    <meta property="twitter:url" content="https://weiqianglabs.github.io/ourostack/">
-    <meta property="twitter:title" content="OuroStack | Total Supply Chain Resilience">
-    <meta property="twitter:description" content="Neutralize Python dependency risks before deployment.">
-    <meta property="twitter:image" content="https://weiqianglabs.github.io/ourostack/og-image.png">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 5L15 25v35c0 20 35 35 35 35s35-15 35-35V25L50 5z' fill='none' stroke='orange' stroke-width='8'/%3E%3Ccircle cx='50' cy='50' r='12' fill='orange'/%3E%3C/svg%3E">
-    <style>
-        :root {
-            --nav-bg: rgba(0, 0, 0, 0.75);
-            --bg: #111;
-            --accent: #0071e3; /* Apple Blue */
-            --accent-hover: #0077ed;
-            --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
-            --border: rgba(255, 255, 255, 0.15);
-        }
+    --font-head: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 105%}
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-primary);
-            font-family: "SF Pro Display", -apple-system, system-ui, sans-serif;
-            line-height: 1.47;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-primary);
+    color: var(--text-main);
+    overflow-x: hidden;
+    font-size: max(12px, 1rem);
+  }
 
-        /* --- NAVBAR FIXE --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 70px;
-            background: var(--nav-bg);
-            backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-        }
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+  }
 
-        .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 500;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.7rem;
+    letter-spacing: 0.12em;
+    color: var(--text-main);
+    text-decoration: none;
+  }
 
-        .nav-contact {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+  .nav-logo span { color: var(--accent); }
 
-        .nav-contact input {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid transparent;
-            border-radius: 6px;
-            color: white;
-            padding: 6px 14px;
-            font-size: 13px;
-            width: 220px;
-            outline: none;
-        }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
 
-        .nav-contact button {
-            background: orange;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-        }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
 
-        /* --- HERO SECTION (Contenant le divider) --- */
-        .hero-container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Pousse le divider en bas */
-            align-items: center;
-            padding-top: 200px; /* Espace pour le titre */
-            text-align: center;
-            background: radial-gradient(circle at center, #0000 0%, #121212 100%);
-        }
+  .nav-links a:hover { color: var(--text-main); }
 
-        .hero-content h1 {
-            font-size: clamp(40px, 8vw, 90px);
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            background: linear-gradient(180deg, #fff 0%, #86868b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
+  .nav-cta {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--text-main);
+    border: none;
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
 
-        .hero-content p {
-            font-size: clamp(18px, 2.5vw, 24px);
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto;
-        }
+  .nav-cta:hover { background: var(--accent); color: #ffffff; }
 
-        /* --- DIVIDER (Visible dans le 1er bloc) --- */
-        .divider {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            padding-bottom: 20px;
-        }
-
-        .line {
-            width: 1px;
-            height: 80px; /* Taille ajustée pour tenir dans le viewport */
-            background: linear-gradient(180deg, orange, var(--border), transparent);
-        }
-
-
-        .arch-title {
-            font-size: 12px;
-            letter-spacing: 12px;
-            color: #555;
-            text-transform: uppercase;
-            margin: 20px 0;
-            font-weight: 400;
-        }
-
-        /* --- FEATURES SECTION (Après le scroll) --- */
-        .features-section {
-            padding: 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .features-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .features-header h2 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-/* Conteneur de la grille pour la perspective */
-.grid {
-    display: grid;
-    /* Force 3 colonnes sur PC, s'adapte sur tablette/mobile */
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    perspective: 2000px; /* Augmenté pour un effet 3D plus profond */
-    padding: 20px;
-}
-
-.card {
-    background: #161617;
-    border-radius: 22px;
-    padding: 40px;
-    border: 1px solid var(--border);
-    min-height: 350px; /* Assure que toutes les cartes ont la même taille */
+  /* SECTIONS — base */
+  section {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    
-    /* Animation de Flip au chargement */
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.6s ease;
-    transform-style: preserve-3d;
-    transform: rotateX(-20deg) rotateY(90deg); /* Flip latéral + inclinaison */
-    opacity: 0;
-}
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem;
+    position: relative;
+  }
 
-/* État final quand la carte devient visible via JS */
-.card.visible {
-    transform: rotateX(0deg) rotateY(0deg);
-    opacity: 1;
-}
+  /* Setting backgrounds for layout */
+  .hero { background: var(--bg-primary); }
+  #agent { background: var(--bg-secondary); }
+  #vex { background: var(--bg-primary); }
+  #sources { background: var(--bg-secondary); }
+  #defense { background: var(--bg-primary); }
 
-/* Responsive : 2 colonnes sur tablette, 1 sur mobile */
-@media (max-width: 1024px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-    .grid { grid-template-columns: 1fr; }
-}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    justify-content: flex-end;
+    padding-bottom: 8vh;
+    overflow: hidden;
+  }
 
-        .card-icon { color: orange; font-size: 24px; margin-bottom: 20px; display: block; }
-        .card h3 { font-size: 22px; margin-bottom: 12px; }
-        .card p { color: var(--text-secondary); font-size: 16px; line-height: 1.5; }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,119,182,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 70% 70%, rgba(236,138,10,0.05) 0%, transparent 50%);
+  }
 
-        footer {
-            padding: 40px;
-            text-align: center;
-            color: #424245;
-            font-size: 12px;
-            border-top: 1px solid var(--border);
-        }
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 80%);
+  }
 
-        @media (max-width: 768px) {
-            .nav-contact input { display: none; }
-            .hero-container { height: auto; padding-bottom: 50px; }
-        }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 1000px;
+  }
 
-        .stats-section {
-    padding: 100px 40px;
-    max-width: 1100px;
-    margin: 0 auto;
-    border-top: 1px solid var(--border);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
-}
-
-.stat-item {
-    text-align: left;
-}
-
-.stat-number {
-    font-size: 56px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    background: linear-gradient(180deg, #fff 0%, #555 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
-}
-
-.stat-label {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: orange;
+  .hero-eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
     font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.stat-desc {
-    color: var(--text-secondary);
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.comparison-box {
-    margin-top: 80px;
-    background: #161617;
-    border-radius: 28px;
-    padding: 40px;
-    border: 1px solid var(--border);
-}
-
-.comparison-box h4 {
-    font-size: 12px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #ff3b30; /* Apple Red pour l'alerte */
-    margin-bottom: 20px;
-}
-    </style>
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--font-head);
+    font-weight: 200;
+    font-size: clamp(3.5rem, 9vw, 8.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  .hero-title strong {
+    font-weight: 700;
+    display: block;
+    color: var(--text-main);
+  }
+
+  .hero-title em {
+    font-style: normal;
+    font-weight: 200;
+    color: var(--text-light);
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .btn-primary {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: var(--accent);
+    border: none;
+    padding: 0.9rem 2.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    background: transparent;
+    border: 1px solid var(--text-light);
+    padding: 0.9rem 2.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--text-main); transform: translateY(-1px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+
+  .scroll-hint span {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  .scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--text-light), transparent);
+    animation: scrollDrop 1.5s ease-in-out infinite;
+  }
+
+  /* STEP SECTIONS */
+  .step-label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+  }
+
+  .section-title {
+    font-family: var(--font-head);
+    font-weight: 200;
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--text-main);
+  }
+
+  .section-title strong { font-weight: 700; }
+
+  .section-body {
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.75;
+    max-width: 620px;
+    text-align: center;
+    margin: 0 auto 3.5rem;
+    color: var(--text-muted);
+  }
+
+  .accent-word { color: var(--accent); font-weight: 600; }
+  .accent2-word { color: var(--accent2); font-weight: 600; }
+
+  /* SBOM FOCUS */
+  .sbom-single {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+
+  .sbom-badge {
+    font-family: var(--font-head);
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow: 0 0 40px var(--accent-glow);
+  }
+
+  .sbom-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+
+  /* PIPELINE */
+  /* Conteneur principal du pipeline */
+  .pipeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: sans-serif;
+  }
+
+  /* Chaque étape */
+  .pipe-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative; /* Nécessaire pour positionner la ligne */
+  }
+
+  /* Le cercle numérique */
+  .pipe-num {
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    z-index: 2; /* Passe au-dessus de la ligne */
+    border: 2px solid transparent;
+  }
+
+  /* La ligne de liaison (CSS Magic) */
+  .pipe-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 20px; /* Aligné au milieu du cercle (40px / 2) */
+    left: calc(50% + 20px); /* Commence après le bord du cercle */
+    width: calc(100% - 40px); /* S'arrête avant le cercle suivant */
+    height: 2px;
+    background-color: #ccc;
+    z-index: 1;
+  }
+
+  /* Styles pour l'état actif */
+  .active-pipe .pipe-num {
+    background-color: #007bff; /* Bleu par défaut, changez selon votre thème */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  }
+
+  .active-pipe:not(:last-child)::after {
+    background-color: #007bff;
+  }
+
+  /* Titres et descriptions */
+  .pipe-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #222;
+  }
+
+  .pipe-desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  /* Responsive : passage en colonne sur mobile */
+  @media (max-width: 768px) {
+    .pipeline {
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+    .pipe-step:not(:last-child)::after {
+      top: 40px;
+      left: 50%;
+      width: 2px;
+      height: 30px;
+    }
+  }
+
+  /* METRICS ROW */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 800px;
+    width: 100%;
+    margin: 3rem auto;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+  }
+
+  .metric {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .metric:last-child { border-right: none; }
+
+  .metric-val {
+    font-family: var(--font-head);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .metric-unit {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-light);
+  }
+
+  .metric-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+  }
+
+  /* SOURCES ROW */
+  .sources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border-color);
+    max-width: 720px;
+    width: 100%;
+    margin: 3rem auto;
+  }
+
+  .source-card {
+    background: var(--bg-primary);
+    padding: 2.5rem 2rem;
+  }
+
+  .source-icon {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    color: var(--text-main);
+  }
+
+  .source-name {
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+
+  .source-detail {
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* VEX VISUAL */
+  .vex-diagram {
+    max-width: 780px;
+    width: 100%;
+    margin: 3rem auto;
+    position: relative;
+  }
+
+  .vex-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border-color);
+    border: 1px solid var(--border-color);
+  }
+
+  .vex-layer {
+    display: flex;
+    align-items: center;
+    background: var(--bg-primary);
+    padding: 1.4rem 2rem;
+    gap: 1.5rem;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+
+  .vex-layer:hover { border-left-color: var(--accent); }
+
+  .vex-layer-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-active { background: var(--accent); }
+  .dot-warn { background: var(--accent2); }
+  .dot-off { background: var(--border-color); }
+
+  .vex-layer-text {
+    flex: 1;
+  }
+
+  .vex-layer-title {
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+  }
+
+  .vex-layer-desc {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .vex-layer-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid;
+    flex-shrink: 0;
+  }
+
+  .tag-active {
+    color: var(--accent);
+    border-color: rgba(236, 138, 10, 0.3);
+  }
+
+  .tag-enrich {
+    color: var(--accent2);
+    border-color: rgba(0, 119, 182, 0.3);
+  }
+
+  .tag-ia {
+    color: var(--text-light);
+    border-color: var(--border-color);
+  }
+
+  /* DEFENSE SECTION */
+  .defense-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border-color);
+    max-width: 800px;
+    width: 100%;
+    margin: 3rem auto;
+  }
+
+  .defense-card {
+    background: var(--bg-primary);
+    padding: 2.5rem 2rem;
+  }
+
+  .defense-card-num {
+    font-family: var(--font-head);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .defense-card-title {
+    font-family: var(--font-head);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+  }
+
+  .defense-card-body {
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  /* FINAL CTA */
+  .final-cta {
+    text-align: center;
+    padding: 10rem 2rem;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, var(--accent-glow) 0%, transparent 60%);
+  }
+
+  .final-cta-title {
+    font-family: var(--font-head);
+    font-weight: 200;
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .final-cta-title strong { font-weight: 700; color: var(--accent); }
+
+  .final-cta-sub {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .final-cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-secondary);
+    padding: 3rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: var(--font-head);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .footer-brand span { color: var(--accent); }
+
+  .footer-legal {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--text-main);
+    margin: 0 auto 2rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollDrop {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.1); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    .metrics { grid-template-columns: 1fr; }
+    .sources-grid { grid-template-columns: 1fr; }
+    .defense-grid { grid-template-columns: 1fr; }
+    .pipeline { flex-direction: column; }
+    .pipe-step { border-right: none; border-bottom: 1px solid var(--border-color); }
+  }
+</style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="nav-logo">OuroSecurity</a>
-<div class="nav-contact">
-    <a href="#contact-section" style="text-decoration: none;">
-        <button type="button" style="color:black; cursor:pointer;">
-            <b style="font-size:medium">Contact us</b>
-        </button>
-    </a>
+<nav>
+  <a href="#" class="nav-logo">OURO<span>SECURITY</span></a>
+  <ul class="nav-links">
+    <li><a href="#agent">Agent</a></li>
+    <li><a href="#vex">VEX Engine</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#defense">Defense</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Demo</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="hero-content">
+<!--    <p class="hero-eyebrow">Supply Chain Security Platform</p>-->
+    <h1 class="hero-title">
+      <em>Supply Chain</em>
+      <strong>Vulnerability</strong>
+      <strong>Governance</strong>
+    </h1>
+    <p class="hero-sub">
+      One agent. One SBOM. An intelligence that sorts, enriches, and prioritizes.
+      Only the vulnerabilities that truly threaten your application are reported.
+    </p>
+    <div class="hero-actions">
+      <a href="#agent" class="btn-primary">Discover our approach</a>
+      <a href="#contact" class="btn-secondary">Request a demo</a>
+    </div>
+  </div>
+<!--
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+-->
+</section>
+
+<section id="agent">
+  <p class="step-label reveal">Step 01 — Collection</p>
+  <div class="section-divider reveal reveal-delay-1"></div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Hit &amp; Run<br><strong>Binary Agent</strong>
+  </h2>
+  <p class="section-body reveal reveal-delay-2">
+    A lightweight, dependency-free agent, deployed on your infrastructure just long enough to execute.
+    It collects your <span class="accent-word">SBOM</span>, then disappears.
+    No intrusion, no permanent attack surface.
+  </p>
+
+  <div class="sbom-single reveal reveal-delay-2">
+    <div class="sbom-badge">SBOM</div>
+    <div class="sbom-label">That's all we need</div>
+  </div>
+
+<div class="pipeline reveal reveal-delay-3">
+  <div class="pipe-step active-pipe">
+    <div class="pipe-num">1</div>
+    <div class="pipe-title">Deploy</div>
+    <div class="pipe-desc">Self-extracting binary, single execution, 0 persistence on the system.</div>
+  </div>
+  <div class="pipe-step active-pipe">
+    <div class="pipe-num">2</div>
+    <div class="pipe-title">Scan SBOM</div>
+    <div class="pipe-desc">Exhaustive inventory of Python dependencies — direct, transitive, lockfile.</div>
+  </div>
+  <div class="pipe-step active-pipe">
+    <div class="pipe-num">3</div>
+    <div class="pipe-title">Transmit</div>
+    <div class="pipe-desc">Encrypted transmission of the SBOM to our analysis engine. Then delete the agent.</div>
+  </div>
+  <div class="pipe-step active-pipe">
+    <div class="pipe-num">4</div>
+    <div class="pipe-title">Done</div>
+    <div class="pipe-desc">Your side is clean. The work begins on our side.</div>
+  </div>
 </div>
-    </nav>
+</section>
 
-    <main>
-        <section class="hero-container">
-<div class="hero-content">
+<section id="vex">
+  <p class="step-label reveal">Step 02 — Analysis &amp; Enrichment</p>
+  <div class="section-divider reveal reveal-delay-1"></div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Enriched<br><strong>VEX File</strong>
+  </h2>
+ <p class="section-body reveal reveal-delay-2">
 
-            <h1>Total Resilience.</h1>
+Your application context — tech stack, exposure, business criticality — is correlated with the <b>enriched VEX</b>.
 
-            <p style="max-width: 900px; margin: 0 auto; line-height: 1.5; font-size: clamp(19px, 2.5vw, 26px); color: var(--text-secondary); font-weight: 500;">
-                The only <span style="color: var(--text-primary);">Supply Chain Security</span> platform that delivers 
-                a <span style="color: var(--text-primary);">full dependency mapping</span> and <span style="color: var(--text-primary);">immediately actionable insights</span>. 
-                Built specifically to neutralize risks across your entire <strong style="color: orange; font-weight: 600;">Python</strong> ecosystem.
-            </p>
+The AI generates a <span class="accent-word">prioritized defense strategy</span> every day,
 
+not a list of CVEs.
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px 0; max-width: 1200px; margin: 0 auto; padding-top: 12%; font-family: sans-serif; color: #ffffff;">
-    
-    <div style="flex: 2; min-width: 350px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column;">
-        <div style="display: flex; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid orange;">
-            <div style="width: 28px; height: 28px; border-radius: 50%; background: orange; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; margin-right: 12px; flex-shrink: 0;">1</div>
-            <h4 style="color: #ffffff; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Generation</h4>
+</p> 
+
+  <div class="vex-diagram reveal reveal-delay-2" style="margin-top:0;">
+    <div class="vex-layers">
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">Real Impact Filtering</div>
+          <div class="vex-layer-desc">Only CVEs reaching an execution path of your app are kept. CVE noise disappears.</div>
         </div>
-        <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.5; text-align: justify; text-justify: inter-word; margin: 0;">
-            Deconstruct your software supply chain into <span style="color: white; font-weight: 600;">atomic primitives</span>. We map raw source logic before the build pipeline begins.
-        </p>
-    </div>
-
-    <div style="flex: 2; min-width: 350px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column;">
-        <div style="display: flex; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid orange;">
-            <div style="width: 28px; height: 28px; border-radius: 50%; background: orange; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; margin-right: 12px; flex-shrink: 0;">2</div>
-            <h4 style="color: #ffffff; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Processing</h4>
+        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">App Impact</div>
+      </div>
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-warn"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">Dependency Break Simulation</div>
+          <div class="vex-layer-desc">Cold simulation: if a dependency is compromised or removed, what is the cascading impact? Result injected into the VEX.</div>
         </div>
-        <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.5; text-align: justify; text-justify: inter-word; margin: 0;">
-            Analyze <span style="color: white; font-weight: 600;">structural integrity</span>. Map blast radiuses in real-time to isolate risks and filter 95% of security noise.
-        </p>
-    </div>
-
-    <div style="flex: 2; min-width: 350px; padding: 15px 25px; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; background: rgba(255,255,255,0.02); display: flex; flex-direction: column;">
-        <div style="display: flex; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 2px solid orange;">
-            <div style="width: 28px; height: 28px; border-radius: 50%; background: orange; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; margin-right: 12px; flex-shrink: 0;">3</div>
-            <h4 style="color: #ffffff; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0;">Guidance</h4>
+        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">Simulation</div>
+      </div>
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">EPSS — Exploitation Probability</div>
+          <div class="vex-layer-desc">EPSS score injected for each CVE. Prioritize what will be exploited, not what is theoretically severe.</div>
         </div>
-        <p style="color: var(--text-secondary); font-size: 15px; line-height: 1.5; text-align: justify; text-justify: inter-word; margin: 0;">
-            Execute <span style="color: white; font-weight: 600;">engineering-first remediation</span>. Receive a precise roadmap to prune or isolate components to be secure by design.
-        </p>
+        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">EPSS</div>
+      </div>
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-warn"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">CISA KEV — Confirmed Exploits</div>
+          <div class="vex-layer-desc">Cross-referencing with the CISA Known Exploited Vulnerabilities catalog. If it's in KEV, it's critical.</div>
+        </div>
+        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">CISA KEV</div>
+      </div>
+      <div class="vex-layer" style="background: var(--bg-tertiary);">
+        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title" style="font-size:1rem;">Final Enriched VEX</div>
+          <div class="vex-layer-desc">The consolidated VEX file: prioritized, contextualized, actionable. Each entry indicates what to do, in what order.</div>
+        </div>
+        <div class="vex-layer-tag tag-ia" style="border-color: var(--text-light); color: var(--text-main); font-size:0.7rem; padding:0.4rem 1rem;">Deliverable</div>
+      </div>
     </div>
+  </div>
+</section>
 
+<section id="sources">
+  <p class="step-label reveal">Step 03 — Context Sources</p>
+  <div class="section-divider reveal reveal-delay-1"></div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Two Decisive<br><strong>Signals</strong>
+  </h2>
+  <p class="section-body reveal reveal-delay-2">
+    EPSS and CISA KEV are not optional. They are the two levers that transform a list of CVEs into a <span class="accent2-word">prioritized action plan</span>.
+  </p>
+
+  <div class="sources-grid reveal reveal-delay-2">
+    <div class="source-card">
+      <div class="source-icon">EPSS</div>
+      <div class="source-name">EPSS</div>
+      <p class="source-detail">
+        Exploit Prediction Scoring System — predictive model that calculates the probability that a CVE will be actively exploited in the next 30 days. Score between 0 and 1. Injected into each VEX entry to rank real emergencies.
+      </p>
+    </div>
+    <div class="source-card">
+      <div class="source-icon">KEV</div>
+      <div class="source-name">CISA KEV</div>
+      <p class="source-detail">
+        Known Exploited Vulnerabilities — official CISA catalog listing vulnerabilities for which in-the-wild exploitation is confirmed. Presence in KEV = immediate processing, without debate.
+      </p>
+    </div>
+  </div>
+
+  <div class="metrics reveal reveal-delay-3">
+    <div class="metric">
+      <div class="metric-val">97<span class="metric-unit">%</span></div>
+      <div class="metric-label">CVE Noise Reduction</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">&lt;1<span class="metric-unit">h</span></div>
+      <div class="metric-label">From agent to enriched VEX</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">0</div>
+      <div class="metric-label">Code left on your servers</div>
+    </div>
+  </div>
+</section>
+
+<section id="defense">
+  <p class="step-label reveal">Step 04 — Strategy</p>
+  <div class="section-divider reveal reveal-delay-1"></div>
+  <h2 class="section-title reveal reveal-delay-1">
+    Daily Defense<br><strong>Strategy</strong>
+  </h2>
+  <p class="section-body reveal reveal-delay-2">
+    Your application context — tech stack, exposure, business criticality — is correlated with the enriched VEX.
+    The AI generates a <span class="accent-word">prioritized defense strategy</span> every day,
+    not a list of CVEs.
+  </p>
+
+  <div class="vex-diagram reveal reveal-delay-2">
+    <div class="vex-layers">
+      <div class="vex-layer" style="border-left-color: rgba(236, 138, 10, 0.4);">
+        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">Client Application Context</div>
+          <div class="vex-layer-desc">Tech stack, network exposure, SLA, functional criticality — transmitted once, used in every analysis.</div>
+        </div>
+        <div class="vex-layer-tag tag-active">Input</div>
+      </div>
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-warn"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">VEX + Context Correlation</div>
+          <div class="vex-layer-desc">The engine cross-references each enriched VEX entry with the application profile. A real risk score is calculated.</div>
+        </div>
+        <div class="vex-layer-tag tag-enrich">Correlation</div>
+      </div>
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-off"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title">AI Analysis — Recommendations</div>
+          <div class="vex-layer-desc">The AI analyzes the final risk graph and produces an ordered remediation strategy: patch, mitigate, accept, or monitor.</div>
+        </div>
+        <div class="vex-layer-tag tag-ia">AI Engine</div>
+      </div>
+      <div class="vex-layer" style="border-left-color: var(--accent); background: var(--bg-tertiary);">
+        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-text">
+          <div class="vex-layer-title" style="font-size:1rem;">Daily Defense Brief</div>
+          <div class="vex-layer-desc">A daily deliverable: what to address today, how, and why — contextualized to your application.</div>
+        </div>
+        <div class="vex-layer-tag tag-active">Deliverable</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="defense-grid reveal reveal-delay-3">
+    <div class="defense-card">
+      <div class="defense-card-num">Action 1</div>
+      <div class="defense-card-title">Critical Patch</div>
+      <div class="defense-card-body">CVEs in CISA KEV with EPSS &gt; 0.7 and impact on the main execution path. Process within 24h.</div>
+    </div>
+    <div class="defense-card">
+      <div class="defense-card-num">Action 2</div>
+      <div class="defense-card-title">Mitigation</div>
+      <div class="defense-card-body">CVEs without an available patch: WAF rules, network restriction, or isolation recommended pending the fix.</div>
+    </div>
+    <div class="defense-card">
+      <div class="defense-card-num">Action 3</div>
+      <div class="defense-card-title">Accept</div>
+      <div class="defense-card-body">CVEs with no real exploitation path in your context. Decision documented, tracked in the VEX.</div>
+    </div>
+    <div class="defense-card">
+      <div class="defense-card-num">Action 4</div>
+      <div class="defense-card-title">Monitor</div>
+      <div class="defense-card-body">CVEs with low EPSS, not in KEV, indirect impact. Automatically re-evaluated with each source update.</div>
+    </div>
+  </div>
+</section>
+
+<div class="final-cta" id="contact">
+  <div class="final-cta-bg"></div>
+  <div class="final-cta-title reveal">
+    One SBOM.<br><strong>One Decision.</strong><br>Every Day.
+  </div>
+  <p class="final-cta-sub reveal reveal-delay-1">
+    Reduce the noise. Address what matters. Sleep better.
+  </p>
+  <div class="final-cta-actions reveal reveal-delay-2">
+    <a href="#" class="btn-primary">Deploy the agent</a>
+    <a href="#" class="btn-secondary">Watch a live demo</a>
+  </div>
 </div>
-            <p style="margin-top: 25px; font-size: 20px; color: var(--text-secondary); opacity: 0.8;">
-                <i>"Stop the noise. Start acting with real-time mapping and automated cluster immunity."</i>
-            </p>
-        </div>
 
-        </section>
+<footer>
+  <div class="footer-brand">OURO<span>SECURITY</span></div>
+  <div class="footer-legal">© 2026 — Python Supply Chain Vulnerability Governance Platform</div>
+</footer>
 
-         <section class="stats-section">
-            <div class="features-header" style="text-align: left;">
-                <h2 style="color: var(--text-secondary); font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">Market Insights</h2>
-                <h2 style="font-size: 48px; max-width: 800px;">Static scanners are failing Python developers.</h2>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-label">Unreachable Noise</div>
-                    <div class="stat-number">90%+</div>
-                    <p class="stat-desc">Of vulnerabilities reported by legacy static tools are never actually loaded into memory or executed in Python runtimes.</p>
-                </div>
-                
-                <div class="stat-item">
-                    <div class="stat-label">PyPI Attacks</div>
-                    <div class="stat-number">480%</div>
-                    <p class="stat-desc">Spike in malicious package injections targeting Python ecosystems, moving beyond simple vulnerabilities to active malware.</p>
-                </div>
-                
-                <div class="stat-item">
-                    <div class="stat-label">Time Wasted</div>
-                    <div class="stat-number">15h+</div>
-                    <p class="stat-desc">Spent weekly by security teams triaging phantom alerts that have absolutely no execution path in your environment.</p>
-                </div>
-            </div>
-
-            <div class="comparison-box">
-                <h4>The Legacy Problem</h4>
-                <p style="font-size: 20px; line-height: 1.4; color: var(--text-primary);">
-                    Traditional dependency scanners treat Python like static manifests.</br></br> They ignore dynamic imports and flood your backlog with thousands of 
-                    <span style="color: #ff3b30;">unreachable vulnerabilities</span>, forcing your team to rebuild containers 
-                    for patches that don't even reduce your actual blast radius.
-                </p>
-            </div>
-
-
-        </section>
-<div style="height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent); margin: 40px 0;"></div>
-
-        <section class="features-section">
-            <div class="features-header">
-                <h2 style="font-size: 40px;">Your Next-Gen Security Tool</h2>
-            </div>
-            
-            <div class="grid">
-<article class="card">
-    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">⬡</span>
-    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Blast Radius Detection</h3>
-    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
-        Analyze your <span style="color: var(--text-primary); font-weight: 500;">pre-deployment architecture</span> to map exactly how a vulnerability could spread. We reduce your attack surface by optimizing dependencies specifically for your Python application's needs before a single line of code reaches production.
-    </p>
-</article>
-
-<article class="card">
-    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">✕</span>
-    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Instant Break Simulation</h3>
-    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
-        Test the resilience of your ecosystem by <span style="color: var(--text-primary); font-weight: 500;">simulating dependency failures</span> in real-time. Evaluate the impact of a package breach or removal instantly, <span style="color: orange; font-weight: 500;">without the need to rebuild</span> or redeploy your application.
-    </p>
-</article>
-
-<article class="card">
-    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">▣--▣--▣</span>
-    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Source of Truth</h3>
-    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
-        Maintain an <span style="color: var(--text-primary); font-weight: 500;">immutable ledger</span> of every Python package. Ensure that your deployment strictly follows your security policy with a complete, actionable map of your entire dependency tree.
-    </p>
-</article>
-
-<article class="card">
-    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">✂</span>
-    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Optimizer</h3>
-    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
-        Most security tools react to vulnerabilities. Ouro Security allows you to <span style="color: var(--text-primary); font-weight: 500;">proactively shape</span> your application's architecture. By mapping and optimizing your Python dependencies, we reduce your <span style="color: var(--text-primary); font-weight: 500;">potential attack surface</span> to its absolute minimum—aligning your production environment with the highest <span style="color: orange; font-weight: 500;">Threat Modeling</span> standards.
-    </p>
-</article>
-
-<article class="card">
-    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block; text-align: center;">⟳</span>
-    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em;text-align: center;">Real-Time Audit</h3>
-    <p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
-        Continuous visibility across your ecosystem. Our platform performs <span style="color: var(--text-primary); font-weight: 500;">live inventory checks</span> and dependency mapping in real-time, instantly identifying any drift from your defined security baseline or newly introduced risks.
-    </p>
-</article>
-
-<article class="card">
-    <span class="card-icon" style="color: orange; font-size: 28px; margin-bottom: 25px; display: block;text-align: center;">☉</span>
-<h3 style="font-size: 24px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em; color: var(--text-primary); text-align: center;">
-    Contextual Acceleration
-</h3>
-<p style="color: var(--text-secondary); font-size: 17px; line-height: 1.6; text-align: justify; text-justify: inter-word;">
-    Stop wasting weeks on generic alerts. We deliver <span style="color: var(--text-primary); font-weight: 500;">immediately actionable insights</span> tailored to your specific application context, allowing your engineering teams to remediate verified risks faster and focus on shipping code.
-</p>
-</article>
-
-
-            </div>
-
-        </section>
-
-        <section class="cta-section" style="padding: 120px 40px; text-align: center; border-top: 1px solid var(--border); background: radial-gradient(circle at center, #121212 0%, var(--bg) 100%);">
-            <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -0.015em; margin-bottom: 15px;">Ready to secure your Python ecosystem?</h2>
-            <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 40px;">Get full dependency mapping and immediately actionable insights today.</p>
-            
-
-            <p style="display: flex; align-items: center; justify-content: center; gap: 12px; margin: 60px 0; font-family: sans-serif;">
-    <span style="color: orange; font-size: 24px; line-height: 1;">✉</span> 
-    
-    <a href="mailto:contact@lianax.io" 
-       style="color: #ffffff; font-size: 20px; font-weight: 600; text-decoration: none; letter-spacing: 0.02em; transition: all 0.3s ease; border-bottom: 2px solid rgba(255, 165, 0, 0.2);" 
-       onmouseover="this.style.borderColor='orange'; this.style.color='orange';" 
-       onmouseout="this.style.borderColor='rgba(255, 165, 0, 0.2)'; this.style.color='#ffffff';"
-       id="contact-section">
-        contact@ourosecurity.com
-    </a>
-</p>
 <script>
-    const observerOptions = {
-        threshold: 0.2 // Déclenche quand 20% de la carte est visible
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Ajoute un délai progressif (cascade)
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 150); 
-                
-                // Optionnel : arrête d'observer une fois l'animation jouée
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // On cible toutes les cartes
-    document.querySelectorAll('.card').forEach(card => {
-        observer.observe(card);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.vex-layer').forEach(layer => {
+    layer.addEventListener('mouseenter', () => {
+      layer.style.borderLeftColor = 'var(--accent)';
+    });
+    layer.addEventListener('mouseleave', () => {
+      layer.style.borderLeftColor = '';
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      const target = document.querySelector(anchor.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 </script>
-        </section>
-
-    </main>
-
-    <footer>
-        © 2026 OuroSecurity. All rights reserved.
-    </footer>
-
 </body>
 </html>
