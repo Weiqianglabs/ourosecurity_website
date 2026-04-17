@@ -29,7 +29,7 @@
     --font-body: 'Barlow', sans-serif;
   }
 
-  html { scroll-behavior: smooth; font-size: 105%}
+  html { scroll-behavior: smooth; font-size: 115%}
 
   body {
     font-family: var(--font-body);
@@ -213,6 +213,7 @@ display: flex;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1em;
 }
 
   .hero-title strong {
@@ -872,18 +873,232 @@ display: flex;
       <strong class="title-bottom">Governance.</strong>
     </h1>
 
-    <p class="hero-sub">
-      Ouro transforms the chaos of a thousand vulnerabilities into a <b style="font-weight: 650;">single strategic path</b>. 
-      By <span class="accent-word">mapping your application’s DNA</span> against global threat intelligence, we eliminate 80% of the noise. 
-      No more endless CVE lists.
-.
-    </p>
+
+<style>
+ .car-wrap {
+    max-width: 640px;
+    margin: 2.5rem auto 0;
+    font-family: var(--font-body);
+  }
+
+.car-stage {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    /* ON FIXE LA HAUTEUR ICI : elle ne bougera plus jamais */
+    height: 250px; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.car-slide {
+    /* TOUTES les slides sont en absolu, même l'active */
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateX(40px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+    height: 100%; 
+    width: 100%;
+    background-color: f5f5f5;
+}
+
+.car-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    /* SURTOUT PAS de position: relative ici, on reste en absolute */
+}
+
+  .car-slide.exit {
+    opacity: 0;
+    transform: translateX(-40px);
+    position: absolute;
+  }
+
+  .car-badge {
+    display: inline-block;
+    background: rgba(236, 138, 10, 0.1);
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    margin-bottom: 1rem;
+    font-family: var(--font-head);
+    border: 1px solid rgba(236, 138, 10, 0.25);
+  }
+
+  .car-text {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0;
+    font-family: var(--font-body);
+  }
+
+  .car-text em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .car-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 1.5rem;
+    margin-bottom: 3em;
+  }
+
+  .car-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 0;
+    background: var(--border-color);
+    border: 1px solid rgba(0,0,0,0.15);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, width 0.3s;
+    flex-shrink: 0;
+  }
+
+  .car-dot.active {
+    background: var(--accent);
+    width: 20px;
+    border-color: var(--accent);
+  }
+
+  .car-arrow {
+    background: var(--text-main);
+    border: none;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .car-arrow:hover {
+    background: var(--accent);
+  }
+
+  .car-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    width: 0%;
+    transition: width 5s linear;
+  }
+</style>
+
+<div class="car-wrap">
+  <div class="car-stage">
+    <div class="car-progress" id="progress"></div>
+
+    <div class="car-slide active">
+      <span class="car-badge">STEP 01: COLLECTION</span>
+      <p class="car-text"><b style="font-weight: 850;">Your application's</b> <em>DNA</em> = <em>SBOM</em> + <em>CONTEXT</em></p>
+    </div>
+
+    <div class="car-slide">
+      <span class="car-badge">STEP 02: ENRICHMENT</span>
+      <p class="car-text"><b style="font-weight: 850;">Cyber Threat Intelligence analysis to fuel your</b> <em>VEX</em></p>
+    </div>
+
+    <div class="car-slide">
+      <span class="car-badge">STEP 03: ASSESSMENT</span>
+      <p class="car-text"><b style="font-weight: 850;">Contextual correlation powered by</b> <em>AI</em></p>
+    </div>
+
+    <div class="car-slide">
+      <span class="car-badge">STEP 04: SIMULATION</span>
+      <p class="car-text"><b style="font-weight: 850;">Unique simulation of cold dependency failures</b></p>
+    </div>
+
+    <div class="car-slide">
+      <span class="car-badge">FINAL: INSIGHTS</span>
+      <p class="car-text"><b style="font-weight: 850;">Delivering your tailor-made</b></br> <em>Daily Defense Strategy</em></p>
+    </div>
+  </div>
+</div>
+  <div class="car-nav">
+    <button class="car-arrow" id="prev" aria-label="Previous">&#8592;</button>
+    <button class="car-dot active" data-i="0"></button>
+    <button class="car-dot" data-i="1"></button>
+    <button class="car-dot" data-i="2"></button>
+    <button class="car-dot" data-i="3"></button>
+    <button class="car-dot" data-i="4"></button>
+    <button class="car-arrow" id="next" aria-label="Next">&#8594;</button>
+  </div>
+</div>
+
+
+<script>
+  const slides = document.querySelectorAll('.car-slide');
+  const dots   = document.querySelectorAll('.car-dot');
+  const progress = document.getElementById('progress');
+  let current = 0, timer, progTimer;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => slides[current].classList.remove('exit'), 450);
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    resetProgress();
+  }
+
+  function resetProgress() {
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    clearTimeout(progTimer);
+    progTimer = setTimeout(() => {
+      progress.style.transition = 'width 5s linear';
+      progress.style.width = '100%';
+    }, 30);
+  }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => show(current + 1), 5000);
+  }
+
+  document.getElementById('next').onclick = () => { show(current + 1); startAuto(); };
+  document.getElementById('prev').onclick = () => { show(current - 1); startAuto(); };
+  dots.forEach(d => d.addEventListener('click', () => { show(+d.dataset.i); startAuto(); }));
+
+  resetProgress();
+  startAuto();
+</script>
 
     <div class="hero-actions">
       <a href="#agent" class="btn-primary">Explore the Ghost Agent</a>
       <a href="#contact" class="btn-secondary">Request a Demo</a>
     </div>
-  </div>
 </section>
 
 <section id="agent">
