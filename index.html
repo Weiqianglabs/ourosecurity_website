@@ -10,26 +10,21 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    /* Light Theme Variables */
     --bg-primary: #ffffff;
     --bg-secondary: #f4f4f2;
     --bg-tertiary: #ebebeb;
     --text-main: #0a0a0a;
     --text-muted: rgba(10, 10, 10, 0.6);
     --text-light: rgba(10, 10, 10, 0.4);
-    
     --accent: #ec8a0a;
     --accent-glow: rgba(236, 138, 10, 0.15);
-    /* Darkened accent2 for better contrast on light background */
-    --accent2: #0077b6; 
-    
+    --accent2: #0077b6;
     --border-color: rgba(0, 0, 0, 0.08);
-
     --font-head: 'Barlow Condensed', sans-serif;
     --font-body: 'Barlow', sans-serif;
   }
 
-  html { scroll-behavior: smooth; font-size: 115%}
+  html { scroll-behavior: smooth; font-size: 115%; }
 
   body {
     font-family: var(--font-body);
@@ -39,7 +34,7 @@
     font-size: max(12px, 1rem);
   }
 
-  /* NAV */
+  /* ─── NAV ─── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -49,7 +44,7 @@
     justify-content: space-between;
     padding: 0 3rem;
     height: 64px;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255,255,255,0.9);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
   }
@@ -61,21 +56,18 @@
     letter-spacing: 0.12em;
     color: var(--text-main);
     text-decoration: none;
+    flex-shrink: 0;
   }
-
   .nav-logo span { color: var(--accent); }
 
-.nav-links {
+  .nav-links {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 2.5rem;
     list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
+  }
   .nav-links a {
     font-family: var(--font-body);
     font-size: 0.8rem;
@@ -86,7 +78,6 @@
     text-transform: uppercase;
     transition: color 0.2s;
   }
-
   .nav-links a:hover { color: var(--text-main); }
 
   .nav-cta {
@@ -102,11 +93,11 @@
     cursor: pointer;
     text-decoration: none;
     transition: background 0.2s;
+    flex-shrink: 0;
   }
+  .nav-cta:hover { background: var(--accent); }
 
-  .nav-cta:hover { background: var(--accent); color: #ffffff; }
-
-  /* SECTIONS — base */
+  /* ─── SECTIONS ─── */
   section {
     min-height: 100vh;
     display: flex;
@@ -117,35 +108,27 @@
     position: relative;
   }
 
-  /* Setting backgrounds for layout */
-  .hero { background: var(--bg-primary); }
-  #agent { background: var(--bg-secondary); }
-  #vex { background: var(--bg-primary); }
-  #sources { background: var(--bg-secondary); }
-  #defense { background: var(--bg-primary); }
+  .hero          { background: var(--bg-primary); }
+  #agent         { background: var(--bg-secondary); }
+  #vex           { background: var(--bg-primary); }
+  #sources       { background: var(--bg-secondary); }
+  #defense       { background: var(--bg-primary); }
 
-  /* HERO */
+  /* ─── HERO ─── */
   .hero {
-    justify-content: flex-end;
-    padding-bottom: 8vh;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 6rem;
     overflow: hidden;
-padding-top: 40px; /* Réduisez cette valeur (ex: de 100px à 40px) */
-  min-height: 100vh;  /* Si vous avez un min-height, réduisez-le aussi */ 
-display: flex;
-  padding-bottom: 25vh;        /* Pour garder un petit espace de respiration */
-}
-
+  }
   .hero-bg {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background:
       radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,119,182,0.05) 0%, transparent 60%),
       radial-gradient(ellipse 60% 40% at 70% 70%, rgba(236,138,10,0.05) 0%, transparent 50%);
   }
-
   .grid-overlay {
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background-image:
       linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
@@ -153,688 +136,547 @@ display: flex;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 80%);
   }
-
-.hero-content {
-  margin-top: -50px; /* Plus la valeur est élevée, plus le bloc monte */
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 1000px;
-}
-
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; max-width: 1000px; width: 100%;
+  }
   .hero-eyebrow {
-    font-family: var(--font-body);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, #3776AB 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 1rem;
     opacity: 0;
     animation: fadeUp 0.8s 0.2s forwards;
   }
-
-  /* Style pour Supply Chain */
-.hero-title .title-mid {
-  font-style: normal;
-  font-weight: 200;
-  display: block;
-  color: var(--text-light);
-  font-size: 0.8em; /* Un peu plus petit que le reste */
-}
-
-/* Style pour Vulnerability Governance */
-.hero-title .title-bottom {
-  font-weight: 700;
-  display: block;
-  color: var(--text-main);
-  font-size: 0.7em; /* Ajusté pour que la ligne longue tienne sur l'écran */
-  white-space: nowrap; /* Évite le retour à la ligne sur les mots clés */
-}
-
-/* Correction pour mobile */
-@media (max-width: 768px) {
-  .hero-title .title-bottom {
-    white-space: normal;
-    font-size: 0.6em;
-  }
-}
-
-.hero-title {
-  font-family: var(--font-head);
-  font-size: clamp(3.5rem, 9vw, 8.5rem);
-  line-height: 1.1; /* Augmenté légèrement pour l'empilement */
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  color: var(--text-main);
-  opacity: 0;
-  animation: fadeUp 0.9s 0.4s forwards;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1em;
-}
-
-  .hero-title strong {
-    font-weight: 700;
-    display: block;
+  .hero-title {
+    font-family: var(--font-head);
+    font-size: clamp(3rem, 9vw, 8.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
     color: var(--text-main);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+    display: flex; flex-direction: column; align-items: center;
+    margin-top: 0.5em;
+  }
+  .hero-title .title-mid {
+    font-style: normal; font-weight: 200;
+    display: block; color: var(--text-light); font-size: 0.8em;
+  }
+  .hero-title .title-bottom {
+    font-weight: 700; display: block; color: var(--text-main); font-size: 0.7em;
   }
 
-  .hero-title em {
-    font-style: normal;
-    font-weight: 200;
-    color: var(--text-light);
-  }
-
-  .hero-sub {
+  /* ─── CAROUSEL ─── */
+  .hero-quote {
     font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.5;
     font-weight: 300;
-    font-size: clamp(1rem, 1.8vw, 1.25rem);
-    line-height: 1.6;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto 3rem;
+    letter-spacing: -0.02em;
+    color: #111;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto 2rem;
+    padding: 0 1rem;
     opacity: 0;
     animation: fadeUp 0.9s 0.6s forwards;
   }
 
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+  .car-wrap {
+    max-width: 640px; width: 100%;
+    margin: 0 auto;
+    font-family: var(--font-body);
     opacity: 0;
     animation: fadeUp 0.9s 0.8s forwards;
   }
-
-  .btn-primary {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #ffffff;
-    background: var(--accent);
-    border: none;
-    padding: 0.9rem 2.2rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
+  .car-stage {
+    position: relative;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    height: 200px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1em;
+  }
+  .car-slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 2rem;
+    opacity: 0; transform: translateX(40px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+    pointer-events: none;
+  }
+  .car-slide.active  { opacity: 1; transform: translateX(0); pointer-events: auto; }
+  .car-slide.exit    { opacity: 0; transform: translateX(-40px); }
+  .car-badge {
+    display: inline-block;
+    background: rgba(236,138,10,0.1);
+    color: #3776AB;
+    font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 4px 14px; margin-bottom: 1rem;
+    font-family: var(--font-head);
+    border: 1px solid rgba(236,138,10,0.25);
+  }
+  .car-text {
+    font-size: 1rem; font-weight: 300;
+    color: var(--text-muted); line-height: 1.6; max-width: 420px;
+  }
+  .car-text em { font-style: normal; color: var(--accent); font-weight: 600; }
+  .car-nav {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; margin-bottom: 1.5rem;
+  }
+  .car-dot {
+    width: 8px; height: 8px; border-radius: 0;
+    background: var(--border-color);
+    border: 1px solid rgba(0,0,0,0.15);
+    cursor: pointer; padding: 0;
+    transition: background 0.3s, width 0.3s; flex-shrink: 0;
+  }
+  .car-dot.active { background: var(--accent); width: 20px; border-color: var(--accent); }
+  .car-arrow {
+    background: var(--text-main); border: none;
+    width: 32px; height: 32px; cursor: pointer;
+    color: #fff; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .car-arrow:hover { background: var(--accent); }
+  .car-progress {
+    position: absolute; bottom: 0; left: 0;
+    height: 2px; background: var(--accent); width: 0%;
+    transition: width 5s linear;
   }
 
-  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-
-  .btn-secondary {
+  /* ─── STEP SECTIONS ─── */
+  .step-label {
     font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    margin-bottom: 1.5rem; color: var(--text-muted);
+    text-align: center;
+  }
+  .section-divider {
+    width: 40px; height: 1px;
+    background: var(--text-main); margin: 0 auto 2rem;
+  }
+  .section-title {
+    font-family: var(--font-head); font-weight: 200;
+    font-size: clamp(2.4rem, 6vw, 6rem);
+    line-height: 1; text-transform: uppercase;
+    margin-bottom: 1.5rem; text-align: center;
     color: var(--text-main);
-    background: transparent;
-    border: 1px solid var(--text-light);
-    padding: 0.9rem 2.2rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: border-color 0.2s, transform 0.2s;
   }
-
-  .btn-secondary:hover { border-color: var(--text-main); transform: translateY(-1px); }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 0;
-    animation: fadeUp 1s 1.2s forwards;
+  .section-title strong { font-weight: 700; }
+  .section-body {
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-weight: 300; line-height: 1.75;
+    max-width: 620px; text-align: center;
+    margin: 0 auto 3.5rem; color: var(--text-muted);
+    padding: 0 0.5rem;
   }
+  .accent-word  { color: var(--accent);  font-weight: 600; }
+  .accent2-word { color: var(--accent2); font-weight: 600; }
 
-  .scroll-hint span {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+  /* ─── SBOM ─── */
+  .sbom-single {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 1rem; margin: 2.5rem 0;
+  }
+  .sbom-badge {
+    font-family: var(--font-head); font-size: 5rem; font-weight: 700;
+    color: var(--accent); letter-spacing: -0.02em; line-height: 1;
+    text-shadow: 0 0 40px var(--accent-glow);
+  }
+  .sbom-label {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.3em; text-transform: uppercase;
     color: var(--text-light);
   }
 
+  /* ─── PIPELINE ─── */
+  .pipeline {
+    display: flex; justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px; width: 100%; max-width: 1100px;
+    margin: 40px auto; padding: 0 20px;
+  }
+  .pipe-step {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; text-align: center; position: relative;
+  }
+  .pipe-num {
+    width: 42px; height: 42px;
+    background-color: #333; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 1.1rem;
+    margin-bottom: 16px; z-index: 2; flex-shrink: 0;
+  }
+  .pipe-step:not(:last-child)::after {
+    content: "";
+    position: absolute; top: 21px;
+    left: calc(50% + 21px);
+    width: calc(100% - 42px);
+    height: 3px; background-color: #007bff; z-index: 1;
+  }
+  .active-pipe .pipe-num {
+    background-color: #007bff;
+    box-shadow: 0 0 12px rgba(0,123,255,0.6);
+  }
+  .pipe-title { font-weight: bold; margin-bottom: 10px; color: #222; font-size: 1rem; }
+  .pipe-desc  { font-size: 0.9rem; color: #555; line-height: 1.45; max-width: 280px; }
+
+  /* ─── METRICS ─── */
+  .metrics {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; max-width: 800px; width: 100%; margin: 3rem auto;
+    border: 1px solid var(--border-color); background: var(--bg-primary);
+  }
+  .metric {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border-color); text-align: center;
+  }
+  .metric:last-child { border-right: none; }
+  .metric-val {
+    font-family: var(--font-head); font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 0.5rem;
+  }
+  .metric-unit { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+  .metric-label {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-light); margin-top: 0.5rem;
+  }
+
+  /* ─── SOURCES ─── */
+  .sources-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--border-color);
+    max-width: 720px; width: 100%; margin: 3rem auto;
+  }
+  .source-card { background: var(--bg-primary); padding: 2.5rem 2rem; }
+  .source-icon {
+    width: 36px; height: 36px;
+    border: 2px solid var(--text-main);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 0.65rem;
+    font-weight: 700; letter-spacing: 0.05em;
+    margin-bottom: 1.2rem; color: var(--text-main);
+  }
+  .source-name {
+    font-family: var(--font-head); font-size: 1.5rem; font-weight: 700;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 0.5rem; color: var(--text-main);
+  }
+  .source-detail { font-size: 0.82rem; font-weight: 400; line-height: 1.6; color: var(--text-muted); }
+
+  /* ─── VEX & DEFENSE ─── */
+  .vex-diagram {
+    max-width: 780px; width: 100%;
+    margin: 0 auto 3rem; position: relative;
+  }
+  .vex-layers {
+    display: flex; flex-direction: column;
+    gap: 1px; background: var(--border-color);
+    border: 1px solid var(--border-color);
+  }
+  .vex-layer {
+    display: flex; align-items: center;
+    background: var(--bg-primary);
+    padding: 1.4rem 2rem; gap: 1.5rem;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s;
+    position: relative;
+  }
+  .vex-layer:hover { border-left-color: var(--accent); }
+
+  /* ─── Dot colors ─── */
+  .vex-layer-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    flex-shrink: 0; align-self: flex-start; margin-top: 4px;
+  }
+  .dot-active { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
+  .dot-warn   { background: var(--accent2); box-shadow: 0 0 6px rgba(0,119,182,0.3); }
+  .dot-off    { background: var(--border-color); border: 1px solid rgba(0,0,0,0.15); }
+  .dot-final    { background: green; border: 1px solid rgba(0,0,0,0.15); }
+
+  .vex-layer-text { flex: 1; min-width: 0; }
+  .vex-layer-title {
+    font-family: var(--font-head); font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-main); margin-bottom: 0.3rem;
+  }
+  .vex-layer-desc { font-size: 0.88rem; font-weight: 400; color: var(--text-muted); line-height: 1.5; }
+
+  /* ─── Tag colors — coherent with brand ─── */
+  .vex-layer-tag {
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border: 1px solid;
+    flex-shrink: 0; white-space: nowrap; align-self: flex-start;
+  }
+  .tag-active  { color: var(--accent);  border-color: rgba(236,138,10,0.4); background: rgba(236,138,10,0.05); }
+  .tag-enrich  { color: var(--accent2); border-color: rgba(0,119,182,0.35); background: rgba(0,119,182,0.05); }
+  .tag-ia      { color: var(--text-muted); border-color: var(--border-color); background: var(--bg-secondary); }
+  .tag-deliver {
+    color: var(--text-main); border-color: rgba(0,0,0,0.25);
+    background: var(--bg-tertiary); font-size: 0.7rem; padding: 0.4rem 1rem;
+  }
+
+  /* Highlight last "deliverable" row */
+  .vex-layer.row-deliverable { background: var(--bg-tertiary); }
+  .vex-layer.row-deliverable .vex-layer-title { font-size: 1rem; }
+
+  /* ─── DEFENSE GRID ─── */
+  .defense-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 1px; background: var(--border-color);
+    max-width: 800px; width: 100%; margin: 3rem auto;
+  }
+  .defense-card { background: var(--bg-primary); padding: 2.5rem 2rem; }
+
+  /* Color-coded action numbers matching brand palette */
+  .defense-card-num {
+    font-family: var(--font-head); font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 1rem;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .defense-card-num::before {
+    content: ''; display: inline-block;
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .num-1 { color: #c0392b; }
+  .num-1::before { background: #c0392b; box-shadow: 0 0 6px rgba(192,57,43,0.4); }
+  .num-2 { color: var(--accent); }
+  .num-2::before { background: var(--accent); box-shadow: 0 0 6px var(--accent-glow); }
+  .num-3 { color: var(--accent2); }
+  .num-3::before { background: var(--accent2); box-shadow: 0 0 6px rgba(0,119,182,0.3); }
+  .num-4 { color: var(--text-light); }
+  .num-4::before { background: var(--border-color); border: 1px solid rgba(0,0,0,0.15); }
+
+  /* Left border accent per action */
+  .defense-card:nth-child(1) { border-left: 3px solid #c0392b; }
+  .defense-card:nth-child(2) { border-left: 3px solid var(--accent); }
+  .defense-card:nth-child(3) { border-left: 3px solid var(--accent2); }
+  .defense-card:nth-child(4) { border-left: 3px solid var(--border-color); }
+
+  .defense-card-title {
+    font-family: var(--font-head); font-size: 1.4rem; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--text-main); margin-bottom: 0.75rem;
+  }
+  .defense-card-body { font-size: 0.82rem; font-weight: 400; line-height: 1.7; color: var(--text-muted); }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    text-align: center; padding: 10rem 2rem;
+    background: var(--bg-primary); position: relative; overflow: hidden;
+  }
+  .final-cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, var(--accent-glow) 0%, transparent 60%);
+  }
+  .final-cta-title {
+    font-family: var(--font-head); font-weight: 200;
+    font-size: clamp(2.5rem, 7vw, 7rem);
+    line-height: 0.95; text-transform: uppercase;
+    color: var(--text-main); margin-bottom: 2rem; position: relative;
+  }
+  .final-cta-title strong { font-weight: 700; color: var(--accent); }
+  .final-cta-sub { font-size: 1rem; font-weight: 400; color: var(--text-muted); margin-bottom: 3rem; position: relative; }
+  .final-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+  /* ─── BUTTONS ─── */
+  .btn-primary {
+    font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #fff; background: var(--accent); border: none;
+    padding: 0.9rem 2.2rem; cursor: pointer; text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-secondary {
+    font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-main); background: transparent;
+    border: 1px solid var(--text-light);
+    padding: 0.9rem 2.2rem; cursor: pointer; text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--text-main); transform: translateY(-1px); }
+
+  /* ─── SCROLL HINT ─── */
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0; animation: fadeUp 1s 1.2s forwards;
+  }
+  .scroll-hint span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); }
   .scroll-arrow {
-    width: 1px;
-    height: 40px;
+    width: 1px; height: 40px;
     background: linear-gradient(to bottom, var(--text-light), transparent);
     animation: scrollDrop 1.5s ease-in-out infinite;
   }
 
-  /* STEP SECTIONS */
-  .step-label {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    color: var(--text-muted);
-  }
-
-  .section-title {
-    font-family: var(--font-head);
-    font-weight: 200;
-    font-size: clamp(2.8rem, 6vw, 6rem);
-    line-height: 1;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    color: var(--text-main);
-  }
-
-  .section-title strong { font-weight: 700; }
-
-  .section-body {
-    font-size: clamp(1rem, 1.4vw, 1.15rem);
-    font-weight: 300;
-    line-height: 1.75;
-    max-width: 620px;
-    text-align: center;
-    margin: 0 auto 3.5rem;
-    color: var(--text-muted);
-  }
-
-  .accent-word { color: var(--accent); font-weight: 600; }
-  .accent2-word { color: var(--accent2); font-weight: 600; }
-
-  /* SBOM FOCUS */
-  .sbom-single {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    margin: 3rem 0;
-  }
-
-  .sbom-badge {
-    font-family: var(--font-head);
-    font-size: 5rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    text-shadow: 0 0 40px var(--accent-glow);
-  }
-
-  .sbom-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--text-light);
-  }
-
-  /* PIPELINE */
-  /* Conteneur principal du pipeline */
-.pipeline {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  width: 100%;
-  max-width: 1100px;
-  margin: 50px auto;
-  font-family: sans-serif;
-  padding: 0 20px;
-}
-
-.pipe-step {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-}
-
-.pipe-num {
-  width: 42px;
-  height: 42px;
-  background-color: #333;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 16px;
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-/* Ligne horizontale sur desktop */
-.pipe-step:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  top: 21px;
-  left: calc(50% + 21px);
-  width: calc(100% - 42px);
-  height: 3px;
-  background-color: #ccc;
-  z-index: 1;
-}
-
-.active-pipe .pipe-num {
-  background-color: #007bff;
-  box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
-}
-
-.active-pipe:not(:last-child)::after {
-  background-color: #007bff;
-}
-
-.pipe-title {
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #222;
-  font-size: 1.05rem;
-}
-
-.pipe-desc {
-  font-size: 0.92rem;
-  color: #555;
-  line-height: 1.45;
-  max-width: 280px;
-}
-
-/* ====================== RESPONSIVE ====================== */
-
-/* Tablette & mobile classique : ligne verticale continue */
-@media (max-width: 768px) {
-  .pipeline {
-    flex-direction: column;
-    align-items: center;
-    gap: 48px;
-    position: relative;
-  }
-
-  .pipe-step:not(:last-child)::after {
-    display: none;
-  }
-
-  /* Ligne verticale bleue */
-  .pipeline::before {
-    content: "";
-    position: absolute;
-    top: 21px;
-    left: 20.5px;                    /* centre du cercle */
-    width: 3px;
-    height: calc(100% - 42px);
-    background-color: #007bff;
-    z-index: 1;
-  }
-
-  .pipe-step {
-    width: 100%;
-    max-width: 420px;
-  }
-
-  .pipe-desc {
-    max-width: 100%;
-    padding: 0 15px;
-  }
-}
-
-/* Très petits écrans : on fait DISPARAÎTRE les traits bleus */
-@media (max-width: 480px) {
-  .pipeline::before {
-    display: none;                   /* ← C'est ici que les traits disparaissent */
-  }
-
-  .pipe-num {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-
-  /* Optionnel : on réduit un peu l'espace entre les étapes */
-  .pipeline {
-    gap: 40px;
-  }
-}
-
-  /* METRICS ROW */
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    max-width: 800px;
-    width: 100%;
-    margin: 3rem auto;
-    border: 1px solid var(--border-color);
-    background: var(--bg-primary);
-  }
-
-  .metric {
-    padding: 2.5rem 2rem;
-    border-right: 1px solid var(--border-color);
-    text-align: center;
-  }
-
-  .metric:last-child { border-right: none; }
-
-  .metric-val {
-    font-family: var(--font-head);
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-
-  .metric-unit {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text-light);
-  }
-
-  .metric-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-top: 0.5rem;
-  }
-
-  /* SOURCES ROW */
-  .sources-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border-color);
-    max-width: 720px;
-    width: 100%;
-    margin: 3rem auto;
-  }
-
-  .source-card {
-    background: var(--bg-primary);
-    padding: 2.5rem 2rem;
-  }
-
-  .source-icon {
-    width: 36px;
-    height: 36px;
-    border: 2px solid var(--text-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-head);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-bottom: 1.2rem;
-    color: var(--text-main);
-  }
-
-  .source-name {
-    font-family: var(--font-head);
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    color: var(--text-main);
-  }
-
-  .source-detail {
-    font-size: 0.82rem;
-    font-weight: 400;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  /* VEX VISUAL */
-  .vex-diagram {
-    max-width: 780px;
-    width: 100%;
-    margin: 3rem auto;
-    position: relative;
-  }
-
-  .vex-layers {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: var(--border-color);
-    border: 1px solid var(--border-color);
-  }
-
-  .vex-layer {
-    display: flex;
-    align-items: center;
-    background: var(--bg-primary);
-    padding: 1.4rem 2rem;
-    gap: 1.5rem;
-    border-left: 3px solid transparent;
-    transition: border-color 0.3s;
-  }
-
-  .vex-layer:hover { border-left-color: var(--accent); }
-
-  .vex-layer-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .dot-active { background: var(--accent); }
-  .dot-warn { background: var(--accent2); }
-  .dot-off { background: var(--border-color); }
-
-  .vex-layer-text {
-    flex: 1;
-  }
-
-  .vex-layer-title {
-    font-family: var(--font-head);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-main);
-    margin-bottom: 0.2rem;
-  }
-
-  .vex-layer-desc {
-    font-size: 0.88rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  .vex-layer-tag {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    border: 1px solid;
-    flex-shrink: 0;
-  }
-
-  .tag-active {
-    color: var(--accent);
-    border-color: rgba(236, 138, 10, 0.3);
-  }
-
-  .tag-enrich {
-    color: var(--accent2);
-    border-color: rgba(0, 119, 182, 0.3);
-  }
-
-  .tag-ia {
-    color: var(--text-light);
-    border-color: var(--border-color);
-  }
-
-  /* DEFENSE SECTION */
-  .defense-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--border-color);
-    max-width: 800px;
-    width: 100%;
-    margin: 3rem auto;
-  }
-
-  .defense-card {
-    background: var(--bg-primary);
-    padding: 2.5rem 2rem;
-  }
-
-  .defense-card-num {
-    font-family: var(--font-head);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .defense-card-title {
-    font-family: var(--font-head);
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-main);
-    margin-bottom: 0.75rem;
-  }
-
-  .defense-card-body {
-    font-size: 0.82rem;
-    font-weight: 400;
-    line-height: 1.7;
-    color: var(--text-muted);
-  }
-
-  /* FINAL CTA */
-  .final-cta {
-    text-align: center;
-    padding: 10rem 2rem;
-    background: var(--bg-primary);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .final-cta-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 70% 50% at 50% 50%, var(--accent-glow) 0%, transparent 60%);
-  }
-
-  .final-cta-title {
-    font-family: var(--font-head);
-    font-weight: 200;
-    font-size: clamp(3rem, 7vw, 7rem);
-    line-height: 0.95;
-    text-transform: uppercase;
-    color: var(--text-main);
-    margin-bottom: 2rem;
-    position: relative;
-  }
-
-  .final-cta-title strong { font-weight: 700; color: var(--accent); }
-
-  .final-cta-sub {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    margin-bottom: 3rem;
-    position: relative;
-  }
-
-  .final-cta-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    position: relative;
-  }
-
-  /* FOOTER */
+  /* ─── FOOTER ─── */
   footer {
-    background: var(--bg-secondary);
-    padding: 3rem;
+    background: var(--bg-secondary); padding: 2rem 3rem;
     border-top: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
   }
-
-  .footer-brand {
-    font-family: var(--font-head);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--text-muted);
-  }
-
+  .footer-brand { font-family: var(--font-head); font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; color: var(--text-muted); }
   .footer-brand span { color: var(--accent); }
+  .footer-legal { font-size: 0.72rem; color: var(--text-light); letter-spacing: 0.05em; }
 
-  .footer-legal {
-    font-size: 0.72rem;
-    color: var(--text-light);
-    letter-spacing: 0.05em;
-  }
-
-  /* DIVIDER */
-  .section-divider {
-    width: 40px;
-    height: 1px;
-    background: var(--text-main);
-    margin: 0 auto 2rem;
-  }
-
-  /* ANIMATIONS */
+  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-
   @keyframes scrollDrop {
     0%, 100% { opacity: 0.4; transform: scaleY(1); }
     50% { opacity: 0.8; transform: scaleY(1.1); }
   }
-
   .reveal {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 0; transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.15s; }
   .reveal-delay-2 { transition-delay: 0.3s; }
   .reveal-delay-3 { transition-delay: 0.45s; }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    nav { padding: 0 1.5rem; }
+  /* ═══════════════════════════════════════
+     RESPONSIVE BREAKPOINTS
+  ═══════════════════════════════════════ */
+
+  /* ── Tablet (≤ 1024px) ── */
+  @media (max-width: 1024px) {
     .nav-links { display: none; }
-    .metrics { grid-template-columns: 1fr; }
+    nav { padding: 0 1.5rem; }
+  }
+
+  /* ── Tablet (≤ 768px) ── */
+  @media (max-width: 768px) {
+    html { font-size: 105%; }
+    section { padding: 5rem 1.5rem; }
+
+    /* Hero */
+    .hero { padding-top: 80px; padding-bottom: 4rem; min-height: auto; }
+    .hero-eyebrow { font-size: 1.4rem; letter-spacing: 0.2em; }
+
+    /* Carousel */
+    .car-stage { height: 220px; }
+
+    /* Pipeline — vertical */
+    .pipeline {
+      flex-direction: column; align-items: flex-start;
+      gap: 0; padding: 0 0.5rem;
+    }
+    .pipe-step {
+      flex-direction: row; align-items: flex-start;
+      text-align: left; width: 100%;
+      padding: 0 0 2.5rem 0;
+    }
+    .pipe-step:not(:last-child)::after {
+      /* vertical line */
+      top: 42px; left: 20px;
+      width: 3px; height: calc(100% - 42px);
+    }
+    .pipe-num { margin-right: 1.2rem; margin-bottom: 0; flex-shrink: 0; }
+    .pipe-title { margin-bottom: 6px; }
+    .pipe-desc  { max-width: 100%; }
+
+    /* VEX layers — stack tag below on small */
+    .vex-layer { padding: 1.2rem 1.2rem; gap: 1rem; flex-wrap: wrap; }
+    .vex-layer-tag { align-self: auto; margin-top: 0.4rem; }
+
+    /* Metrics — 1 col, remove side borders */
+    .metrics {
+      grid-template-columns: 1fr;
+      border: 1px solid var(--border-color);
+    }
+    .metric {
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.8rem 1.5rem;
+    }
+    .metric:last-child { border-bottom: none; }
+
+    /* Sources — 1 col */
     .sources-grid { grid-template-columns: 1fr; }
+
+    /* Defense — 1 col */
     .defense-grid { grid-template-columns: 1fr; }
-    .pipeline { flex-direction: column; }
-    .pipe-step { border-right: none; border-bottom: 1px solid var(--border-color); }
+    .defense-card { padding: 2rem 1.5rem; }
+
+    /* Final CTA */
+    .final-cta { padding: 6rem 1.5rem; }
+    .final-cta-actions { flex-direction: column; align-items: center; }
+  }
+
+  /* ── Mobile (≤ 480px) ── */
+  @media (max-width: 480px) {
+    html { font-size: 100%; }
+    nav { padding: 0 1rem; height: 56px; }
+    .nav-logo { font-size: 1.4rem; }
+    .nav-cta  { padding: 0.45rem 1rem; font-size: 0.75rem; }
+
+    section { padding: 4.5rem 1rem; }
+
+    /* Hero */
+    .hero { padding-top: 68px; }
+    .hero-title { font-size: clamp(2.5rem, 14vw, 4rem); }
+    .hero-title .title-bottom { white-space: normal; }
+    .hero-eyebrow { font-size: 1.1rem; letter-spacing: 0.15em; }
+
+    /* Carousel */
+    .car-stage  { height: 240px; }
+    .car-wrap   { max-width: 100%; }
+    .car-text   { font-size: 0.95rem; }
+
+    /* SBOM badge */
+    .sbom-badge { font-size: 3.5rem; }
+
+    /* Pipeline */
+    .pipe-step:not(:last-child)::after { display: none; }
+
+    /* Section title */
+    .section-title { font-size: clamp(2rem, 12vw, 3.5rem); }
+
+    /* VEX layer — simplify layout on very small screens */
+    .vex-layer { padding: 1rem; gap: 0.75rem; }
+    .vex-layer-dot { width: 8px; height: 8px; margin-top: 5px; }
+    .vex-layer-title { font-size: 0.8rem; }
+    .vex-layer-desc  { font-size: 0.82rem; }
+    .vex-layer-tag   { font-size: 0.6rem; padding: 0.25rem 0.6rem; }
+
+    /* Defense cards */
+    .defense-card { padding: 1.5rem 1rem; }
+    .defense-card-title { font-size: 1.2rem; }
+
+    /* Metrics */
+    .metric-val { font-size: 2.8rem; }
+
+    /* Source cards */
+    .source-card { padding: 1.8rem 1.2rem; }
+
+    /* Final CTA */
+    .final-cta { padding: 5rem 1rem; }
+
+    /* Footer */
+    footer { padding: 2rem 1rem; flex-direction: column; align-items: flex-start; }
   }
 </style>
 </head>
@@ -851,267 +693,63 @@ display: flex;
   <a href="#contact" class="nav-cta">Demo</a>
 </nav>
 
+<!-- ════ HERO ════ -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="grid-overlay"></div>
-  
+
   <div class="hero-content">
     <h1 class="hero-title">
-<span class="hero-eyebrow" style="
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    font-weight: 800;
-    background: linear-gradient(90deg, #3776AB 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-    margin-bottom: 1rem;
-">
-    Python Supply Chain
-</span>      
-      <span class="title-mid">Security &</span>
+      <span class="hero-eyebrow">Python Supply Chain</span>
+      <span class="title-mid">Security &amp;</span>
       <strong class="title-bottom">Governance.</strong>
     </h1>
 
+    <p class="hero-quote">
+      <i>"We bring application DNA and threat intelligence together to remove noise, focus on the vital 20%, and deliver an actionable AI-powered defense plan."</i>
+    </p>
 
-<style>
- .car-wrap {
-    max-width: 640px;
-    margin: 2.5rem auto 0;
-    font-family: var(--font-body);
-  }
+    <div class="car-wrap">
+      <div class="car-stage">
+        <div class="car-progress" id="progress"></div>
+        <div class="car-slide active">
+          <span class="car-badge">COLLECTION</span>
+          <p class="car-text"><b style="font-weight:850;">Your application's</b> <em>DNA</em> = <em>SBOM</em> + <em>CONTEXT</em></p>
+        </div>
+        <div class="car-slide">
+          <span class="car-badge">ENRICHMENT</span>
+          <p class="car-text"><b style="font-weight:850;">Cyber Threat Intelligence analysis to fuel your</b> <em>VEX</em></p>
+        </div>
+        <div class="car-slide">
+          <span class="car-badge">ASSESSMENT</span>
+          <p class="car-text"><b style="font-weight:850;">Contextual correlation powered by</b> <em>AI</em></p>
+        </div>
+        <div class="car-slide">
+          <span class="car-badge">SIMULATION</span>
+          <p class="car-text"><b style="font-weight:850;">Unique simulation of cold dependency failures</b></p>
+        </div>
+        <div class="car-slide">
+          <span class="car-badge">FINAL</span>
+          <p class="car-text"><b style="font-weight:850;">Delivering your tailor-made</b><br><em>Daily Defense Strategy</em></p>
+        </div>
+      </div>
 
-.car-stage {
-    position: relative;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    /* ON FIXE LA HAUTEUR ICI : elle ne bougera plus jamais */
-    height: 250px; 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1em;
-}
-
-.car-slide {
-    /* TOUTES les slides sont en absolu, même l'active */
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-    opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    pointer-events: none;
-    height: 100%; 
-    width: 100%;
-    background-color: f5f5f5;
-}
-
-.car-slide.active {
-    opacity: 1;
-    transform: translateX(0);
-    pointer-events: auto;
-    /* SURTOUT PAS de position: relative ici, on reste en absolute */
-}
-
-  .car-slide.exit {
-    opacity: 0;
-    transform: translateX(-40px);
-    position: absolute;
-  }
-
-  .car-badge {
-    display: inline-block;
-    background: rgba(236, 138, 10, 0.1);
-    color: #3776AB;
-    font-size: 0.88rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    margin-bottom: 1rem;
-    font-family: var(--font-head);
-    border: 1px solid rgba(236, 138, 10, 0.25);
-  }
-
-  .car-text {
-    font-size: 1.05rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 420px;
-    margin: 0;
-    font-family: var(--font-body);
-  }
-
-  .car-text em {
-    font-style: normal;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .car-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 1.5rem;
-    margin-bottom: 3em;
-  }
-
-  .car-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 0;
-    background: var(--border-color);
-    border: 1px solid rgba(0,0,0,0.15);
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.3s, width 0.3s;
-    flex-shrink: 0;
-  }
-
-  .car-dot.active {
-    background: var(--accent);
-    width: 20px;
-    border-color: var(--accent);
-  }
-
-  .car-arrow {
-    background: var(--text-main);
-    border: none;
-    width: 34px;
-    height: 34px;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .car-arrow:hover {
-    background: var(--accent);
-  }
-
-  .car-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background: var(--accent);
-    width: 0%;
-    transition: width 5s linear;
-  }
-</style>
-
-<p style="
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
-  font-size: 28px;
-  line-height: 1.3;
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  color: #111;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
-">
-  <i>"We bring application DNA and threat intelligence together to remove noise, focus on the vital 20%, and deliver an actionable AI-powered defense plan."</i>
-</p>
-
-</p><div class="car-wrap">
-  <div class="car-stage">
-    <div class="car-progress" id="progress"></div>
-
-    <div class="car-slide active">
-      <span class="car-badge">COLLECTION</span>
-      <p class="car-text"><b style="font-weight: 850;">Your application's</b> <em>DNA</em> = <em>SBOM</em> + <em>CONTEXT</em></p>
-    </div>
-
-    <div class="car-slide">
-      <span class="car-badge">ENRICHMENT</span>
-      <p class="car-text"><b style="font-weight: 850;">Cyber Threat Intelligence analysis to fuel your</b> <em>VEX</em></p>
-    </div>
-
-    <div class="car-slide">
-      <span class="car-badge">ASSESSMENT</span>
-      <p class="car-text"><b style="font-weight: 850;">Contextual correlation powered by</b> <em>AI</em></p>
-    </div>
-
-    <div class="car-slide">
-      <span class="car-badge">SIMULATION</span>
-      <p class="car-text"><b style="font-weight: 850;">Unique simulation of cold dependency failures</b></p>
-    </div>
-
-    <div class="car-slide">
-      <span class="car-badge">FINAL</span>
-      <p class="car-text"><b style="font-weight: 850;">Delivering your tailor-made</b></br> <em>Daily Defense Strategy</em></p>
+      <div class="car-nav">
+        <button class="car-arrow" id="prev" aria-label="Previous">&#8592;</button>
+        <button class="car-dot active" data-i="0"></button>
+        <button class="car-dot" data-i="1"></button>
+        <button class="car-dot" data-i="2"></button>
+        <button class="car-dot" data-i="3"></button>
+        <button class="car-dot" data-i="4"></button>
+        <button class="car-arrow" id="next" aria-label="Next">&#8594;</button>
+      </div>
     </div>
   </div>
-</div>
-  <div class="car-nav">
-    <button class="car-arrow" id="prev" aria-label="Previous">&#8592;</button>
-    <button class="car-dot active" data-i="0"></button>
-    <button class="car-dot" data-i="1"></button>
-    <button class="car-dot" data-i="2"></button>
-    <button class="car-dot" data-i="3"></button>
-    <button class="car-dot" data-i="4"></button>
-    <button class="car-arrow" id="next" aria-label="Next">&#8594;</button>
-  </div>
-</div>
-
-
-<script>
-  const slides = document.querySelectorAll('.car-slide');
-  const dots   = document.querySelectorAll('.car-dot');
-  const progress = document.getElementById('progress');
-  let current = 0, timer, progTimer;
-
-  function show(n) {
-    slides[current].classList.remove('active');
-    slides[current].classList.add('exit');
-    setTimeout(() => slides[current].classList.remove('exit'), 450);
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    resetProgress();
-  }
-
-  function resetProgress() {
-    progress.style.transition = 'none';
-    progress.style.width = '0%';
-    clearTimeout(progTimer);
-    progTimer = setTimeout(() => {
-      progress.style.transition = 'width 5s linear';
-      progress.style.width = '100%';
-    }, 30);
-  }
-
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(() => show(current + 1), 5000);
-  }
-
-  document.getElementById('next').onclick = () => { show(current + 1); startAuto(); };
-  document.getElementById('prev').onclick = () => { show(current - 1); startAuto(); };
-  dots.forEach(d => d.addEventListener('click', () => { show(+d.dataset.i); startAuto(); }));
-
-  resetProgress();
-  startAuto();
-</script>
 
 
 </section>
 
+<!-- ════ STEP 01 — AGENT ════ -->
 <section id="agent">
   <p class="step-label reveal">Step 01 — Collection</p>
   <div class="section-divider reveal reveal-delay-1"></div>
@@ -1129,92 +767,103 @@ display: flex;
     <div class="sbom-label">That's all we need</div>
   </div>
 
-<div class="pipeline reveal reveal-delay-3">
-  <div class="pipe-step active-pipe">
-    <div class="pipe-num">1</div>
-    <div class="pipe-title">Deploy</div>
-    <div class="pipe-desc">Self-extracting binary, single execution, 0 persistence on the system.</div>
+  <div class="pipeline reveal reveal-delay-3">
+    <div class="pipe-step active-pipe">
+      <div class="pipe-num">1</div>
+      <div>
+        <div class="pipe-title">Deploy</div>
+        <div class="pipe-desc">Self-extracting binary, single execution, 0 persistence on the system.</div>
+      </div>
+    </div>
+    <div class="pipe-step active-pipe">
+      <div class="pipe-num">2</div>
+      <div>
+        <div class="pipe-title">Scan SBOM</div>
+        <div class="pipe-desc">Exhaustive inventory of Python dependencies — direct, transitive, lockfile.</div>
+      </div>
+    </div>
+    <div class="pipe-step active-pipe">
+      <div class="pipe-num">3</div>
+      <div>
+        <div class="pipe-title">Transmit</div>
+        <div class="pipe-desc">Encrypted transmission of the SBOM to our analysis engine. Then delete the agent.</div>
+      </div>
+    </div>
+    <div class="pipe-step active-pipe">
+      <div class="pipe-num">4</div>
+      <div>
+        <div class="pipe-title">Done</div>
+        <div class="pipe-desc">Your side is clean. The work begins on our side.</div>
+      </div>
+    </div>
   </div>
-  <div class="pipe-step active-pipe">
-    <div class="pipe-num">2</div>
-    <div class="pipe-title">Scan SBOM</div>
-    <div class="pipe-desc">Exhaustive inventory of Python dependencies — direct, transitive, lockfile.</div>
-  </div>
-  <div class="pipe-step active-pipe">
-    <div class="pipe-num">3</div>
-    <div class="pipe-title">Transmit</div>
-    <div class="pipe-desc">Encrypted transmission of the SBOM to our analysis engine. Then delete the agent.</div>
-  </div>
-  <div class="pipe-step active-pipe">
-    <div class="pipe-num">4</div>
-    <div class="pipe-title">Done</div>
-    <div class="pipe-desc">Your side is clean. The work begins on our side.</div>
-  </div>
-</div>
 </section>
 
+<!-- ════ STEP 02 — VEX ════ -->
 <section id="vex">
   <p class="step-label reveal">Step 02 — Analysis &amp; Enrichment</p>
   <div class="section-divider reveal reveal-delay-1"></div>
   <h2 class="section-title reveal reveal-delay-1">
     Enriched<br><strong>VEX File</strong>
   </h2>
- <p class="section-body reveal reveal-delay-2">
+  <p class="section-body reveal reveal-delay-2">
+    Your application context — tech stack, exposure, business criticality — is correlated with the <b>enriched VEX</b>.
+    The AI generates a <span class="accent-word">prioritized defense strategy</span> every day, not a list of CVEs.
+  </p>
 
-Your application context — tech stack, exposure, business criticality — is correlated with the <b>enriched VEX</b>.
-
-The AI generates a <span class="accent-word">prioritized defense strategy</span> every day,
-
-not a list of CVEs.
-
-</p> 
-
-  <div class="vex-diagram reveal reveal-delay-2" style="margin-top:0;">
+  <div class="vex-diagram reveal reveal-delay-2">
     <div class="vex-layers">
+
       <div class="vex-layer">
-        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-dot dot-warn"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">Real Impact Filtering</div>
           <div class="vex-layer-desc">Only CVEs reaching an execution path of your app are kept. CVE noise disappears.</div>
         </div>
-        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">App Impact</div>
+        <div class="vex-layer-tag tag-ia">App Impact</div>
       </div>
+
       <div class="vex-layer">
         <div class="vex-layer-dot dot-warn"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">Dependency Break Simulation</div>
           <div class="vex-layer-desc">Cold simulation: if a dependency is compromised or removed, what is the cascading impact? Result injected into the VEX.</div>
         </div>
-        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">Simulation</div>
+        <div class="vex-layer-tag tag-ia">Simulation</div>
       </div>
+
       <div class="vex-layer">
-        <div class="vex-layer-dot dot-active"></div>
+        <div class="vex-layer-dot dot-warn"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">EPSS — Exploitation Probability</div>
           <div class="vex-layer-desc">EPSS score injected for each CVE. Prioritize what will be exploited, not what is theoretically severe.</div>
         </div>
-        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">EPSS</div>
+        <div class="vex-layer-tag tag-ia">EPSS</div>
       </div>
+
       <div class="vex-layer">
         <div class="vex-layer-dot dot-warn"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">CISA KEV — Confirmed Exploits</div>
           <div class="vex-layer-desc">Cross-referencing with the CISA Known Exploited Vulnerabilities catalog. If it's in KEV, it's critical.</div>
         </div>
-        <div class="vex-layer-tag tag-ia" style="border-color: var(--border-color); color: var(--text-main);">CISA KEV</div>
+        <div class="vex-layer-tag tag-ia">CISA KEV</div>
       </div>
-      <div class="vex-layer" style="background: var(--bg-tertiary);">
-        <div class="vex-layer-dot dot-active"></div>
+
+      <div class="vex-layer">
+        <div class="vex-layer-dot dot-final"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title" style="font-size:1rem;">Final Enriched VEX</div>
           <div class="vex-layer-desc">The consolidated VEX file: prioritized, contextualized, actionable. Each entry indicates what to do, in what order.</div>
         </div>
-        <div class="vex-layer-tag tag-ia" style="border-color: var(--text-light); color: var(--text-main); font-size:0.7rem; padding:0.4rem 1rem;">Deliverable</div>
+        <div class="vex-layer-tag tag-deliver">Deliverable</div>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- ════ STEP 03 — SOURCES ════ -->
 <section id="sources">
   <p class="step-label reveal">Step 03 — Context Sources</p>
   <div class="section-divider reveal reveal-delay-1"></div>
@@ -1258,6 +907,7 @@ not a list of CVEs.
   </div>
 </section>
 
+<!-- ════ STEP 04 — DEFENSE ════ -->
 <section id="defense">
   <p class="step-label reveal">Step 04 — Strategy</p>
   <div class="section-divider reveal reveal-delay-1"></div>
@@ -1266,13 +916,13 @@ not a list of CVEs.
   </h2>
   <p class="section-body reveal reveal-delay-2">
     Your application context — tech stack, exposure, business criticality — is correlated with the enriched VEX.
-    The AI generates a <span class="accent-word">prioritized defense strategy</span> every day,
-    not a list of CVEs.
+    The AI generates a <span class="accent-word">prioritized defense strategy</span> every day, not a list of CVEs.
   </p>
 
   <div class="vex-diagram reveal reveal-delay-2">
     <div class="vex-layers">
-      <div class="vex-layer" style="border-left-color: rgba(236, 138, 10, 0.4);">
+
+      <div class="vex-layer" style="border-left-color: rgba(236,138,10,0.4);">
         <div class="vex-layer-dot dot-active"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">Client Application Context</div>
@@ -1280,57 +930,62 @@ not a list of CVEs.
         </div>
         <div class="vex-layer-tag tag-active">Input</div>
       </div>
+
       <div class="vex-layer">
         <div class="vex-layer-dot dot-warn"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">VEX + Context Correlation</div>
           <div class="vex-layer-desc">The engine cross-references each enriched VEX entry with the application profile. A real risk score is calculated.</div>
         </div>
-        <div class="vex-layer-tag tag-enrich">Correlation</div>
+        <div class="vex-layer-tag tag-active">Correlation</div>
       </div>
+
       <div class="vex-layer">
-        <div class="vex-layer-dot dot-off"></div>
+        <div class="vex-layer-dot dot-warn"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title">AI Analysis — Recommendations</div>
           <div class="vex-layer-desc">The AI analyzes the final risk graph and produces an ordered remediation strategy: patch, mitigate, accept, or monitor.</div>
         </div>
-        <div class="vex-layer-tag tag-ia">AI Engine</div>
+        <div class="vex-layer-tag tag-active">AI Engine</div>
       </div>
-      <div class="vex-layer" style="border-left-color: var(--accent); background: var(--bg-tertiary);">
-        <div class="vex-layer-dot dot-active"></div>
+
+      <div class="vex-layer" style="border-left-color: var(--accent);">
+        <div class="vex-layer-dot dot-final"></div>
         <div class="vex-layer-text">
           <div class="vex-layer-title" style="font-size:1rem;">Daily Defense Brief</div>
           <div class="vex-layer-desc">A daily deliverable: what to address today, how, and why — contextualized to your application.</div>
         </div>
         <div class="vex-layer-tag tag-active">Deliverable</div>
       </div>
+
     </div>
   </div>
 
   <div class="defense-grid reveal reveal-delay-3">
     <div class="defense-card">
-      <div class="defense-card-num">Action 1</div>
+      <div class="defense-card-num num-1">Action 1</div>
       <div class="defense-card-title">Critical Patch</div>
       <div class="defense-card-body">CVEs in CISA KEV with EPSS &gt; 0.7 and impact on the main execution path. Process within 24h.</div>
     </div>
     <div class="defense-card">
-      <div class="defense-card-num">Action 2</div>
+      <div class="defense-card-num num-2">Action 2</div>
       <div class="defense-card-title">Mitigation</div>
-      <div class="defense-card-body">CVEs without an available patch: WAF rules, network restriction, or isolation recommended pending the fix.</div>
+      <div class="defense-card-body">CVEs without an available patch: mitigations, workarounds, or isolation recommended pending the fix.</div>
     </div>
     <div class="defense-card">
-      <div class="defense-card-num">Action 3</div>
+      <div class="defense-card-num num-3">Action 3</div>
       <div class="defense-card-title">Accept</div>
       <div class="defense-card-body">CVEs with no real exploitation path in your context. Decision documented, tracked in the VEX.</div>
     </div>
     <div class="defense-card">
-      <div class="defense-card-num">Action 4</div>
+      <div class="defense-card-num num-4">Action 4</div>
       <div class="defense-card-title">Monitor</div>
       <div class="defense-card-body">CVEs with low EPSS, not in KEV, indirect impact. Automatically re-evaluated with each source update.</div>
     </div>
   </div>
 </section>
 
+<!-- ════ FINAL CTA ════ -->
 <div class="final-cta" id="contact">
   <div class="final-cta-bg"></div>
   <div class="final-cta-title reveal">
@@ -1351,32 +1006,60 @@ not a list of CVEs.
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  /* ── Carousel ── */
+  const slides   = document.querySelectorAll('.car-slide');
+  const dots     = document.querySelectorAll('.car-dot');
+  const progress = document.getElementById('progress');
+  let current = 0, timer, progTimer;
 
+  function show(n) {
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => slides[current].classList.remove('exit'), 450);
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    resetProgress();
+  }
+
+  function resetProgress() {
+    progress.style.transition = 'none';
+    progress.style.width = '0%';
+    clearTimeout(progTimer);
+    progTimer = setTimeout(() => {
+      progress.style.transition = 'width 5s linear';
+      progress.style.width = '100%';
+    }, 30);
+  }
+
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => show(current + 1), 5000);
+  }
+
+  document.getElementById('next').onclick = () => { show(current + 1); startAuto(); };
+  document.getElementById('prev').onclick = () => { show(current - 1); startAuto(); };
+  dots.forEach(d => d.addEventListener('click', () => { show(+d.dataset.i); startAuto(); }));
+  resetProgress();
+  startAuto();
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+  /* ── VEX hover ── */
   document.querySelectorAll('.vex-layer').forEach(layer => {
-    layer.addEventListener('mouseenter', () => {
-      layer.style.borderLeftColor = 'var(--accent)';
-    });
-    layer.addEventListener('mouseleave', () => {
-      layer.style.borderLeftColor = '';
-    });
+    layer.addEventListener('mouseenter', () => { layer.style.borderLeftColor = 'var(--accent)'; });
+    layer.addEventListener('mouseleave', () => { layer.style.borderLeftColor = ''; });
   });
 
+  /* ── Smooth scroll ── */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const target = document.querySelector(anchor.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
 </script>
